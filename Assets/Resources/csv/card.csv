@@ -1,0 +1,7 @@
+﻿identifier,actions,energy,selectType,start,title,desc,canDraw,exhaust,unlockAt
+smallIndustry,industry|20|nature|-10,1,1,1,Small Industry,"+20 Economy, -10 Ecology",1,0,0
+miniIndustry,industry|10|nature|-10,0,1,1,Mini Industry,"+10 Economy, -10 Ecology",1,0,0
+createScientists,industryMan|2,2,1,1,Create Scientists,Spawn 2 Scientists,1,,
+smallNature,industry|-10|nature|20,1,,1,Small Nature,"+20 Ecology, -10 Economy",,,
+miniNature,industry|-10|nature|10,0,,1,Mini Nature,"+10 Ecology, -10 Economy",,,
+createActivists,natureMan|2,2,,1,Create Activists,Spawn 2 Activists,,,
