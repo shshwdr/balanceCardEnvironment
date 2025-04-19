@@ -17,6 +17,10 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
     public TMP_Text text;
     public TMP_Text desc;
     
+    public TMP_Text energy;
+    public TMP_Text cost;
+    public TMP_Text type;
+    
     //private GameObject selectionCircle;
     //public GameObject selectionCirclePrefab;
 
@@ -27,11 +31,30 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
 
     public CardInfo cardInfo;
     public bool setPosition;
+    public GameObject disable;
     public void Init(CardInfo info)
     {
         cardInfo = info;
         text.text = cardInfo.title;
         desc.text = cardInfo.desc;
+        energy.text = cardInfo.energy.ToString();
+        //cost.text = cardInfo.cost.ToString();
+        type.text = cardInfo.types!=null &&  cardInfo.types.Count > 0 ? cardInfo.types[0] : "";
+
+        if (canUseCard())
+        {
+            disable.SetActive(false);
+            
+        }
+        else
+        {
+            disable.SetActive(true);
+        }
+    }
+
+    public bool canUseCard()
+    {
+        return GameManager.Instance.hasEnoughEnergy(cardInfo.energy);
     }
     // Start is called before the first frame update
     void Start()
@@ -58,10 +81,10 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
         
         OnPlace();
         
-        if (!isDraggable)
-        {
-            return;
-        }
+        // if (!isDraggable)
+        // {
+        //     return;
+        // }
 
         // if (selectionCircle == null)
         // {
@@ -78,13 +101,19 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
     public void OnPlace()
     {
 
+        if (!GameManager.Instance.hasEnoughEnergy(cardInfo.energy))
+        {
+            return;
+        }
+
+        GameManager.Instance.ConsumeEnergy(cardInfo.energy);
         //FindObjectOfType<TutorialMenu>().StartCoroutine( FindObjectOfType<TutorialMenu>().FinishUseCard());
        // Debug.LogError("place");
-        Collider2D[] results = new Collider2D[20]; // 假设最多检测 10 个碰撞体
-
-        // 检测重叠
-        ContactFilter2D contactFilter = new ContactFilter2D();
-        contactFilter.useTriggers = true;  // 允许触发器参与检测
+        // Collider2D[] results = new Collider2D[20]; // 假设最多检测 10 个碰撞体
+        //
+        // // 检测重叠
+        // ContactFilter2D contactFilter = new ContactFilter2D();
+        // contactFilter.useTriggers = true;  // 允许触发器参与检测
        // int count = selectionCircle.GetComponent<Collider2D>().OverlapCollider(contactFilter, results);
         //sort by result's distance to selectionCicle
         // results = results.Where(x => x != null)

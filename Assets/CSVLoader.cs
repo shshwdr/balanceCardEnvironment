@@ -12,6 +12,8 @@ public class CardInfo
     public int start;
     public string title;
     public string desc;
+    public int energy;
+    public int cost;
     public bool canDraw;
     public bool exhaust;
     public int unlockAt;

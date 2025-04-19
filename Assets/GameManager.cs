@@ -17,6 +17,32 @@ public class GameManager : Singleton<GameManager>
 
     public Dictionary<string, int> states = new Dictionary<string, int>();
 
+    private int startEnergy = 4;
+    private int energy;
+    public int Energy {
+        get => energy;
+        set
+        {
+            energy = value;
+            EventPool.Trigger("EnergyChanged");
+        }
+    }
+
+    public bool hasEnoughEnergy(int e)
+    {
+        return energy >= e;
+    }
+
+    public void ConsumeEnergy(int e)
+    {
+        Energy -= e;
+    }
+
+    public void ResetEnergy()
+    {
+        Energy = startEnergy;
+    }
+
     public void DoubleBoost()
     {
         foreach (var key in states.Keys.ToList())
@@ -46,8 +72,36 @@ public class GameManager : Singleton<GameManager>
         }
         return 0;
     }
-    public int Turn => turn;
+    public int Turn
+    {
+        get => turn;
+        set
+        {
+            turn = value;
+            if (turnInDay == turn)
+            {
+                Day++;
+                turn = 1;
+            }
+
+            ResetEnergy();
+            EventPool.Trigger("TurnChanged");
+        }
+    }
+
+    public int turnInDay = 3;
     private int turn = 1;
+
+    private int day = 1;
+    public int Day
+    {
+        get => day;
+        set
+        {
+            day = value;
+            EventPool.Trigger("DayChanged");
+        }
+    }
 
     private int industry;
     private int nature;
@@ -112,9 +166,10 @@ public class GameManager : Singleton<GameManager>
         }
         return 0;
     }
-    public void StartNewTurn()
+    public void InitNewTurn()
     {
-        
+        Turn = 1;
+        Day = 1;
         HandsView.Instance.DrawCard();
         foreach (var meterView in FindObjectsOfType<MeterView>())
         {
@@ -125,7 +180,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        StartNewTurn();
+        InitNewTurn();
     }
 
     // Update is called once per frame
