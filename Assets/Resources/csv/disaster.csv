@@ -1,0 +1,8 @@
+﻿identifier,actions,energy,types,cost,title,desc,canDraw,exhaust,unlockAt
+,,,,2,,All Scientists previously spawned are gone for the day,,,
+,,,,2,,All Activists previously spawned are gone for the day,,,
+,,,,2,,"Today, turns will end after playing 6 cards",,,
+,,,,2,,Losses are doubles,,,
+,,,,2,,-20 Nature when an Industry gain occurs,,,
+,,,,,,-20 Industry when a Nature gain occurs,,,
+,,,,,,A random item is disabled today,,,
