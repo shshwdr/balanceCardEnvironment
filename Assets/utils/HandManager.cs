@@ -88,6 +88,17 @@ public class HandManager : Singleton<HandManager>
                     HandsView.Instance.DiscardCards(value);
                     break;
                 }
+                case "discardHand":
+                {
+                    HandsView.Instance.DiscardHand();
+                    
+                    break;
+                }
+                case "doubleBoost":
+                {
+                    GameManager.Instance.DoubleBoost();
+                    break;
+                }
                 case "boostIndustry":
                 case "boostNature":
                 {
@@ -157,6 +168,12 @@ public class HandManager : Singleton<HandManager>
         }
       
         EventPool.Trigger("DrawHand");  
+    }
+
+    public void DiscardHand()
+    {
+        discardedInBattle.AddRange(handInBattle);
+        handInBattle.Clear();
     }
     public void DrawCard(int count)
     {

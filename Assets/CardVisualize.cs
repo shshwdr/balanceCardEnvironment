@@ -69,7 +69,7 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
         //     selectionCircle = Instantiate(selectionCirclePrefab);
         // }
 
-        var radius = float.Parse(cardInfo.actions[1]);
+        //var radius = float.Parse(cardInfo.actions[1]);
         //selectionCircle.transform.localScale = Vector3.one * radius;
         //selectionCircle.SetActive(true);
         //PlayerControllerManager.Instance.StartDragging(selectionCircle,this);

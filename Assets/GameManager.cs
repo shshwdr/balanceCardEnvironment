@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Pool;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,14 @@ public class GameManager : Singleton<GameManager>
 
     public Dictionary<string, int> states = new Dictionary<string, int>();
 
+    public void DoubleBoost()
+    {
+        foreach (var key in states.Keys.ToList())
+        {
+             states[key] *= 2;
+        }
+        EventPool.Trigger("StateChanged");
+    }
     public void AddState(string key, int value)
     {
         if (states.ContainsKey(key))
@@ -26,6 +35,7 @@ public class GameManager : Singleton<GameManager>
         {
             states[key] = value;
         }
+        EventPool.Trigger("StateChanged");
     }
 
     public int GetState(string key)

@@ -54,6 +54,11 @@ public class HandsView : Singleton<HandsView>
         UpdateHands();
     }
 
+    public void DiscardHand()
+    {
+        HandManager.Instance.DiscardHand();
+        UpdateHands();
+    }
     public void DiscardCards(int count)
     {
         HandManager.Instance.DiscardCards(count);
