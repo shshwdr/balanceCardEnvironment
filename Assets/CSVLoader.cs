@@ -7,6 +7,7 @@ public class CardInfo
 {
     public string identifier;
     public List<string> actions;
+    public List<string> types;
     public int selectType;
     public int start;
     public string title;

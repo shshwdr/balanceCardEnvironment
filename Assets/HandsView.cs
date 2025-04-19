@@ -4,6 +4,7 @@ using Pool;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class HandsView : Singleton<HandsView>
@@ -11,7 +12,7 @@ public class HandsView : Singleton<HandsView>
     public Transform parent;
 
     public CardVisualize cardPrefab;
-    public Button drawButton;
+    [FormerlySerializedAs("drawButton")] public Button endDayButton;
 
     public void InitLevel()
     {
@@ -26,18 +27,18 @@ public class HandsView : Singleton<HandsView>
         // }
         EventPool.OptIn("DrawHand", UpdateHands);
         UpdateHands();
-        drawButton.onClick.AddListener(() =>
+        endDayButton.onClick.AddListener(() =>
         {
             DrawCard();
           //  FindObjectOfType<TutorialMenu>(). FinishUseRedraw();
         });
-        drawButton.gameObject.SetActive(false);
+        //endDayButton.gameObject.SetActive(false);
     }
 
-    public void showRedrawButton()
-    {
-        drawButton.gameObject.SetActive(true);
-    }
+    // public void showRedrawButton()
+    // {
+    //     endDayButton.gameObject.SetActive(true);
+    // }
 
     public void DrawCard()
     {
@@ -46,7 +47,18 @@ public class HandsView : Singleton<HandsView>
 
         //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_draw_card");
     }
-    
+
+    public void DrawCards(int count)
+    {
+        HandManager.Instance.DrawCard(count);
+        UpdateHands();
+    }
+
+    public void DiscardCards(int count)
+    {
+        HandManager.Instance.DiscardCards(count);
+        UpdateHands();
+    }
     public void UpdateHands()
     {
         foreach (Transform child in parent)

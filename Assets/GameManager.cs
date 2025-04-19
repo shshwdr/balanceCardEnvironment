@@ -14,6 +14,28 @@ public class GameManager : Singleton<GameManager>
         HandManager.Instance.InitDeck();
     }
 
+    public Dictionary<string, int> states = new Dictionary<string, int>();
+
+    public void AddState(string key, int value)
+    {
+        if (states.ContainsKey(key))
+        {
+            states[key] += value;
+        }
+        else
+        {
+            states[key] = value;
+        }
+    }
+
+    public int GetState(string key)
+    {
+        if (states.ContainsKey(key))
+        {
+            return states[key];
+        }
+        return 0;
+    }
     public int Turn => turn;
     private int turn = 1;
 
@@ -26,6 +48,8 @@ public class GameManager : Singleton<GameManager>
         get => industry;
         set
         {
+            if(value!=industry)
+            DamageNumbersManager.Instance.ShowResourceCollection(Hud.Instance.industryMeter, value-industry, DamageNumberType.industry);
             industry = value;
             EventPool.Trigger("IndustryChanged");
         }
@@ -35,6 +59,8 @@ public class GameManager : Singleton<GameManager>
         get => nature;
         set
         {
+            if(value!=nature)
+            DamageNumbersManager.Instance.ShowResourceCollection( Hud.Instance.natureMeter, value - nature, DamageNumberType.nature);
             nature = value;
             EventPool.Trigger("NatureChanged");
         }
@@ -47,6 +73,34 @@ public class GameManager : Singleton<GameManager>
             gold = value;
             EventPool.Trigger("GoldChanged");
         }
+    }
+
+    private Dictionary<string, int> charactersDict = new Dictionary<string, int>();
+
+    public void AddCharacter(string key, int value)
+    {
+        if (charactersDict.ContainsKey(key))
+        {
+            charactersDict[key] += value;
+        }
+        else
+        {
+            charactersDict[key] = value;
+        }
+        EventPool.Trigger("CharacterChanged");
+    }
+
+    public int industryManCount => GetCharacter("industryMan");
+    public int industryBoost => GetState("boostIndustry");
+    public int natureManCount => GetCharacter("natureMan");
+    public int natureBoost => GetState("boostNature");
+    public int GetCharacter(string key)
+    {
+        if (charactersDict.ContainsKey(key))
+        {
+            return charactersDict[key];
+        }
+        return 0;
     }
     public void StartNewTurn()
     {

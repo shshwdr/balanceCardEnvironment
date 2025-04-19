@@ -55,6 +55,9 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("OnPointerDown");
+        
+        OnPlace();
+        
         if (!isDraggable)
         {
             return;

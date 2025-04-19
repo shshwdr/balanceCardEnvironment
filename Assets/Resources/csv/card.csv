@@ -1,7 +1,13 @@
-﻿identifier,actions,energy,selectType,start,title,desc,canDraw,exhaust,unlockAt
-smallIndustry,industry|20|nature|-10,1,1,1,Small Industry,"+20 Economy, -10 Ecology",1,0,0
-miniIndustry,industry|10|nature|-10,0,1,1,Mini Industry,"+10 Economy, -10 Ecology",1,0,0
-createScientists,industryMan|2,2,1,1,Create Scientists,Spawn 2 Scientists,1,,
-smallNature,industry|-10|nature|20,1,,1,Small Nature,"+20 Ecology, -10 Economy",,,
-miniNature,industry|-10|nature|10,0,,1,Mini Nature,"+10 Ecology, -10 Economy",,,
-createActivists,natureMan|2,2,,1,Create Activists,Spawn 2 Activists,,,
+﻿identifier,actions,energy,types,start,title,desc,canDraw,exhaust,unlockAt
+smallIndustry,industry|20|nature|-10,1,industry,1,Small Industry,"+20 Industry, -10 Nature",1,0,0
+miniIndustry,industry|10|nature|-5,0,industry,0,Mini Industry,"+10 Industry, -10 Nature",1,0,0
+createScientists,industryMan|2,2,industry,1,Create Scientists,Spawn 2 Scientists,1,,
+smallNature,industry|-10|nature|20,1,nature,1,Small Nature,"+20 Nature, -10 Industry",1,,
+miniNature,industry|-10|nature|10,0,nature,0,Mini Nature,"+10 Nature, -10 Industry",1,,
+createActivists,natureMan|2,2,nature,0,Create Activists,Spawn 2 Activists,1,,
+discardForIndustry,industry|50|discard|1,1,industry,1,discardForIndustry,,1,,
+reduceNatureForDraw,nature|-10|draw|2,0,industry,,reduceNatureForDraw,,1,,
+safeIndustry,industry|5,0,industry,,safeIndustry,,1,,
+boostScientists,boostIndustry|1,2,industry,1,boostScientists,,1,,
+drawCards,draw|2,1,,1,drawCards,Draw two cards,1,,
+doubleBoost,,,,,doubleBoost,,0,,

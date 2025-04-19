@@ -71,7 +71,8 @@ public class MeterView : MonoBehaviour
         bool firstFinished = true;
         for (int i = rewardList.Count-1;i>=0;i--)
         {
-            int prevReq = i ==0 ? reqList[i]-10 : reqList[i-1];
+            int prevReq = i ==0 ? (isIndustry?0:reqList[i]-20) : reqList[i-1];
+            
             if (currentValue < reqList[i])
             {
                 resultImages[i].color = Color.black;
