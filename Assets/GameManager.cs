@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
         CSVLoader.Instance.Init();
         HandManager.Instance.Init();
         HandManager.Instance.InitDeck();
+        
     }
 
     public Dictionary<string, int> states = new Dictionary<string, int>();
@@ -82,6 +83,7 @@ public class GameManager : Singleton<GameManager>
             {
                 Day++;
                 turn = 1;
+                GameRoundManager.Instance.Next();
             }
 
             ResetEnergy();
@@ -166,6 +168,19 @@ public class GameManager : Singleton<GameManager>
         }
         return 0;
     }
+
+    public void StartNewDay()
+    {
+        Industry = 0;
+        Nature = 0;
+        
+        clearBoost();
+    }
+    public void clearBoost()
+    {
+        states.Clear();
+        EventPool.Trigger("StateChanged");
+    }
     public void InitNewTurn()
     {
         Turn = 1;
@@ -175,6 +190,8 @@ public class GameManager : Singleton<GameManager>
         {
             meterView.UpdateViewForStartOfTurn();
         }
+
+        GameRoundManager.Instance.Init();
     }
 
     // Start is called before the first frame update
@@ -193,11 +210,29 @@ public class GameManager : Singleton<GameManager>
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Industry += 10;
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                
+                Industry -= 10;
+            }
+            else
+            {
+                Industry += 10;
+                
+            }
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Nature += 10;
+            
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                Nature -= 10;
+            }
+            else
+            {
+                Nature += 10;
+                
+            }
         }
         if (Input.GetKeyDown(KeyCode.I))
         {

@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHandler,IPointerExitHandler
 {
-
+    public bool isInShop = false;
     public Image image;
 
     public bool isDraggable = true;
@@ -50,6 +50,26 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
         {
             disable.SetActive(true);
         }
+    }
+    
+    public void InitItem(ItemInfo info)
+    {
+        //cardInfo = info;
+        text.text = info.title;
+        desc.text = info.desc;
+        energy.text = "";
+        //cost.text = cardInfo.cost.ToString();
+        type.text = "";
+
+        // if (canUseCard())
+        // {
+        //     disable.SetActive(false);
+        //     
+        // }
+        // else
+        // {
+        //     disable.SetActive(true);
+        // }
     }
 
     public bool canUseCard()
@@ -100,7 +120,10 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
 
     public void OnPlace()
     {
-
+        if (isInShop)
+        {
+            return;
+        }
         if (!GameManager.Instance.hasEnoughEnergy(cardInfo.energy))
         {
             return;
@@ -146,6 +169,10 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (isInShop)
+        {
+            return;
+        }
         if (!setPosition|| !isDraggable)
         {
             return;

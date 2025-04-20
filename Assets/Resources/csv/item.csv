@@ -1,8 +1,8 @@
 ﻿identifier,actions,energy,types,cost,title,desc,canDraw,exhaust,unlockAt
-shareBoost,,,,2,shareBoost,Scientists and Activists share Boost effects,,,
-lastCardTwice,,,,2,lastCardTwice,"When you play the last card in your hand, it plays twice",,,
-drawWhenEmpty,,,,2,drawWhenEmpty,"If the hand is empty, draw a card",,,
-saveNature,,,,2,saveNature,"When a Nature loss occurs, spawn 2 Activists",,,
-saveIndustry,,,,2,saveIndustry,"When an Industry loss occurs, spawn 2 Scientists",,,
+shareBoost,,,,1,shareBoost,Scientists and Activists share Boost effects,1,,
+lastCardTwice,,,,2,lastCardTwice,"When you play the last card in your hand, it plays twice",1,,
+drawWhenEmpty,,,,3,drawWhenEmpty,"If the hand is empty, draw a card",1,,
+saveNature,,,,1,saveNature,"When a Nature loss occurs, spawn 2 Activists",1,,
+saveIndustry,,,,2,saveIndustry,"When an Industry loss occurs, spawn 2 Scientists",1,,
 ,,,,,,,,,
 ,,,,,,,,,

@@ -19,6 +19,27 @@ public class CardInfo
     public int unlockAt;
 }
 
+public class DisasterInfo
+{
+    public string identifier;
+    public string desc;
+    public string title;
+    public bool canDraw;
+    public List<string> actions;
+    public int unlockAt;
+}
+
+public class ItemInfo
+{
+    public string identifier;
+    public string desc;
+    public string title;
+    public bool canDraw;
+    public List<string> actions;
+    public int cost;
+    public int unlockAt;
+}
+
 public class TurnRequirementInfo
 {
     public int turn;
@@ -32,6 +53,8 @@ public class CSVLoader : Singleton<CSVLoader>
 {
     public Dictionary<string, CardInfo> cardDict = new Dictionary<string, CardInfo>();
     public Dictionary<int, TurnRequirementInfo> turnRequirementDict = new Dictionary<int, TurnRequirementInfo>();
+    public Dictionary<string, DisasterInfo> disasterDict = new Dictionary<string, DisasterInfo>();
+    public Dictionary<string, ItemInfo> itemDict = new Dictionary<string, ItemInfo>();
     // Start is called before the first frame update
     public void Init()
     {
@@ -46,6 +69,18 @@ public class CSVLoader : Singleton<CSVLoader>
         foreach (var info in turnRequirements)
         {
             turnRequirementDict[info.turn] = info;
+        }
+        var disasters =
+            CsvUtil.LoadObjects<DisasterInfo>(GetFileNameWithABTest("disaster"));
+        foreach (var info in disasters)
+        {
+            disasterDict[info.identifier] = info;
+        }
+        var items =
+            CsvUtil.LoadObjects<ItemInfo>(GetFileNameWithABTest("item"));
+        foreach (var info in items)
+        {
+            itemDict[info.identifier] = info;
         }
     }
     

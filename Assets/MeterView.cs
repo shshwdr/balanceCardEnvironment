@@ -61,6 +61,7 @@ public class MeterView : MonoBehaviour
         
     }
 
+    public string currentResult = "";
     public void UpdateView()
     {
         
@@ -81,6 +82,7 @@ public class MeterView : MonoBehaviour
                 {
                     
                     resultImages[i].color = Color.red;
+                    currentResult = resultTexts[i].text;
                 }
             }
 
@@ -91,11 +93,13 @@ public class MeterView : MonoBehaviour
                     if (i == 0)
                     {
                         resultImages[i].color = Color.red;
+                        currentResult = resultTexts[i].text;
                     }
                     else
                     {
                         
                         resultImages[i].color = Color.green;
+                        currentResult = resultTexts[i].text;
                     }
                     firstFinished = false;
                 }

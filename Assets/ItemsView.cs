@@ -5,7 +5,7 @@ using Pool;
 using TMPro;
 using UnityEngine;
 
-public class EffectListView : Singleton<EffectListView>
+public class ItemsView : MonoBehaviour
 {
     public GameObject prefab;
 
@@ -13,7 +13,7 @@ public class EffectListView : Singleton<EffectListView>
 
     public void UpdateView()
     {
-        var data = GameManager.Instance.states;
+        var data = ItemManager.Instance.items;
         if (data.Count > parent.childCount)
         {
             for (int i = parent.childCount; i < data.Count; i++)
@@ -23,7 +23,7 @@ public class EffectListView : Singleton<EffectListView>
         }
         for (int i = 0; i < data.Count; i++)
         {
-             parent.GetChild(i).GetComponent<TMP_Text>().text = data.ElementAt(i).Key + " "+ data.ElementAt(i).Value;
+            parent.GetChild(i).GetComponent<TMP_Text>().text = data[i].desc;
         }
 
         for (int i = data.Count; i < parent.childCount; i++)
@@ -34,12 +34,6 @@ public class EffectListView : Singleton<EffectListView>
     // Start is called before the first frame update
     void Start()
     {
-        EventPool.OptIn("StateChanged", UpdateView);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        EventPool.OptIn("ItemChanged", UpdateView);
     }
 }

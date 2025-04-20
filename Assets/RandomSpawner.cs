@@ -45,7 +45,7 @@ public class RandomSpawner : MonoBehaviour
         Vector2 max = spawnArea.bounds.max;
 
         // 随机尝试多个位置
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 10; i++)
         {
             // 随机生成一个位置
             Vector2 randomPosition = new Vector2(
