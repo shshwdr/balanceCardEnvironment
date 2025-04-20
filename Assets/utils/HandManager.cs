@@ -13,6 +13,8 @@ public class HandManager : Singleton<HandManager>
     public List<CardInfo> discardedInBattle = new List<CardInfo>();
     
     private int handMax = 4;
+
+    private int placedCount = 0;
     public void InitDeck()
     {
         deck = ownedCards.ToList();
@@ -20,6 +22,7 @@ public class HandManager : Singleton<HandManager>
 
     public void useCard(CardInfo info)
     {
+        placedCount++;
         handInBattle.Remove(info);
         if (info.exhaust)
         {
@@ -32,9 +35,18 @@ public class HandManager : Singleton<HandManager>
         EventPool.Trigger("DrawHand");
         
         DoCardAction(info);
+        
+        
+        if (DisasterManager.Instance.buffManager.GetBuffValue("endTurn") > 0 &&
+            placedCount >= DisasterManager.Instance.buffManager.GetBuffValue("endTurn"))
+        {
+            EventPool.Trigger<string>("DisasterTrigger","endTurn");
+            placedCount = 0;
+            HandsView.Instance.EndTurn();
+        }
     }
 
-    void DoCardAction(CardInfo info)
+   public void DoCardAction(CardInfo info)
     {
         int test = 0;
         for (int i = 0; i < info.actions.Count;i++)
@@ -112,11 +124,22 @@ public class HandManager : Singleton<HandManager>
 
         if (info.types.Contains("industry"))
         {
-            GameManager.Instance.Industry += GameManager.Instance.industryManCount * (1+ GameManager.Instance.industryBoost);
+            var boostCount = GameManager.Instance.industryBoost;
+            if (ItemManager.Instance.buffManager.GetBuffValue("shareBoost")>0)
+            {
+                
+               boostCount += GameManager.Instance.natureBoost;
+            }
+            GameManager.Instance.Industry += GameManager.Instance.industryManCount * (1+ boostCount);
         }
         if (info.types.Contains("nature"))
         {
-            GameManager.Instance.Nature += GameManager.Instance.natureManCount * (1+ GameManager.Instance.natureBoost);
+            var boostCount = GameManager.Instance.natureBoost;
+            if (ItemManager.Instance.buffManager.GetBuffValue("shareBoost")>0)
+            {
+               boostCount += GameManager.Instance.industryBoost;
+            }
+            GameManager.Instance.Nature += GameManager.Instance.natureManCount * (1+ boostCount);
         }
     }
     
@@ -150,7 +173,10 @@ public class HandManager : Singleton<HandManager>
     {
         for (int i = 0; i < count; i++)
         {
-
+            if (ItemManager.Instance.buffManager.hasBuff("addEnergyWhenDiscard"))
+            {
+                GameManager.Instance.Energy += 1;
+            }
             if (handInBattle.Count == 0)
             {
                 break;

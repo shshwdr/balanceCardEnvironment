@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Pool;
 using TMPro;
 using UnityEngine;
@@ -35,5 +36,20 @@ public class DisastersView : MonoBehaviour
     void Start()
     {
         EventPool.OptIn("DisasterChanged", UpdateView);
+        EventPool.OptIn<string>("DisasterTrigger", trigger);
+    }
+
+    public void trigger(string actionName)
+    {
+        var data = DisasterManager.Instance.disasters;
+        for (int i = 0; i < data.Count; i++)
+        {
+            if (data[i].actions.Contains(actionName))
+            {
+                parent.GetChild(i).GetComponent<TMP_Text>().transform.localScale = Vector3.one;
+                parent.GetChild(i).GetComponent<TMP_Text>().transform.DOKill();
+                parent.GetChild(i).GetComponent<TMP_Text>().transform.DOPunchScale(Vector3.one, 0.3f);
+            }
+        }
     }
 }

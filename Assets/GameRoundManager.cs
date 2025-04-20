@@ -54,10 +54,10 @@ public class GameRoundManager : Singleton<GameRoundManager>
         var industryReward = Hud.Instance.industryMeter.GetComponentInParent<MeterView>().currentResult;
         var natureReward = Hud.Instance.natureMeter.GetComponentInParent<MeterView>().currentResult;
 
-        if (industryReward == "-1")
+        if (industryReward == "DIE")
         {
             GameOver("Better get more industry points next time");
-        }else if (natureReward == "-1")
+        }else if (natureReward == "DIE")
         {
             GameOver("Better get more nature points next time");
         }

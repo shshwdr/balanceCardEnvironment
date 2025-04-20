@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
         CSVLoader.Instance.Init();
         HandManager.Instance.Init();
         HandManager.Instance.InitDeck();
-        
+
     }
 
     public Dictionary<string, int> states = new Dictionary<string, int>();
@@ -116,7 +116,25 @@ public class GameManager : Singleton<GameManager>
         {
             if(value!=industry)
             DamageNumbersManager.Instance.ShowResourceCollection(Hud.Instance.industryMeter, value-industry, DamageNumberType.industry);
-            industry = value;
+            var diff = value - industry;
+            if (diff < 0)
+            {
+                if (DisasterManager.Instance.buffManager.hasBuff("doubleLose"))
+                {
+                    diff *= 2;
+                }
+                if (ItemManager.Instance.buffManager.GetBuffValue("industryLoseAddIndustryMan") > 0)
+                {
+                    GameManager.Instance.AddCharacter("industryMan",  ItemManager.Instance.buffManager.GetBuffValue("industryLoseAddIndustryMan"));
+                }
+            }else if (diff > 0)
+            {
+                if (DisasterManager.Instance.buffManager.hasBuff("IndustryLoseNature"))
+                {
+                    Nature -= 20;
+                }
+            }
+            industry += diff;
             EventPool.Trigger("IndustryChanged");
         }
     }
@@ -127,7 +145,25 @@ public class GameManager : Singleton<GameManager>
         {
             if(value!=nature)
             DamageNumbersManager.Instance.ShowResourceCollection( Hud.Instance.natureMeter, value - nature, DamageNumberType.nature);
-            nature = value;
+            var diff = value - nature;
+            if (diff < 0)
+            {
+                if (DisasterManager.Instance.buffManager.hasBuff("doubleLose"))
+                {
+                    diff *= 2;
+                }
+                if (ItemManager.Instance.buffManager.GetBuffValue("natureLoseAddNatureMan") > 0)
+                {
+                    GameManager.Instance.AddCharacter("natureMan",  ItemManager.Instance.buffManager.GetBuffValue("natureLoseAddNatureMan"));
+                }
+            }else if (diff > 0)
+            {
+                if (DisasterManager.Instance.buffManager.hasBuff("natureLoseIndustry"))
+                {
+                    Industry -= 20;
+                }
+            }
+            nature += diff;
             EventPool.Trigger("NatureChanged");
         }
     }
@@ -183,6 +219,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void InitNewTurn()
     {
+        
         Turn = 1;
         Day = 1;
         HandsView.Instance.DrawCard();
@@ -237,6 +274,13 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.I))
         {
             Gold += 10;
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            
+            ItemManager.Instance.AddAll();
+            DisasterManager.Instance.AddAll();
         }
     }
 

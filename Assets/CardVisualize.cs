@@ -142,6 +142,18 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
         // results = results.Where(x => x != null)
         //     .OrderBy(x => Vector3.Distance(x.transform.position, selectionCircle.transform.position)).ToArray();
         HandManager.Instance.useCard(cardInfo);
+
+        if (ItemManager.Instance.buffManager.hasBuff("lastCardTwice") && HandManager.Instance.handInBattle.Count == 0)
+        {
+            
+            HandManager.Instance.DoCardAction(cardInfo);
+        }
+        
+        if (ItemManager.Instance.buffManager.hasBuff("drawWhenEmpty") && HandManager.Instance.handInBattle.Count == 0)
+        {
+            HandManager.Instance.DrawCard(1);
+        }
+        
         bool foundTarget = false;
         
 

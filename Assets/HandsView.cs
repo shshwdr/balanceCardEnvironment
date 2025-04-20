@@ -29,11 +29,17 @@ public class HandsView : Singleton<HandsView>
         UpdateHands();
         endDayButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.Turn++;
-            DrawCard();
+            EndTurn();
           //  FindObjectOfType<TutorialMenu>(). FinishUseRedraw();
         });
         //endDayButton.gameObject.SetActive(false);
+    }
+
+    public void EndTurn()
+    {
+        
+        GameManager.Instance.Turn++;
+        DrawCard();
     }
 
     // public void showRedrawButton()
