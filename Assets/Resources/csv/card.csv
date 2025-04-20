@@ -10,6 +10,6 @@ reduceNatureForDraw,nature|-10|draw|2,0,industry,1,reduceNatureForDraw,nature|-1
 safeIndustry,industry|5,0,industry,1,safeIndustry,industry|5,1,,
 boostScientists,boostIndustry|1,2,industry,,boostScientists,boostIndustry|1,1,,
 drawCards,draw|2,1,,,drawCards,Draw two cards,1,,
-doubleBoost,doubleBoost,2,,,doubleBoost,doubleBoost,0,,
-refreshHand,industry|-10|nature|-10|discardHand|draw|5,2,,,refreshHand,industry|-10|nature|-10|discardHand|draw|5,,,
+doubleBoost,doubleBoost,2,,,doubleBoost,doubleBoost,1,,
+refreshHand,industry|-10|nature|-10|discardHand|draw|5,2,,,refreshHand,industry|-10|nature|-10|discardHand|draw|5,1,,
 safeNature,nature|5,0,nature,1,safeNature,nature|5,1,,
