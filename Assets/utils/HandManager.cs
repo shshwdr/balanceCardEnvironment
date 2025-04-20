@@ -83,7 +83,6 @@ public class HandManager : Singleton<HandManager>
                     i++;
                     int value = int.Parse(info.actions[i]);
                       GameManager.Instance.AddCharacter(action, value);
-                    SceneRenderer.Instance.characterSpawner.SpawnPrefab(action, value);
                     break;
                 }
                 case "draw":
@@ -122,6 +121,7 @@ public class HandManager : Singleton<HandManager>
             }
         }
 
+
         if (info.types.Contains("industry"))
         {
             var boostCount = GameManager.Instance.industryBoost;
@@ -129,6 +129,11 @@ public class HandManager : Singleton<HandManager>
             {
                 
                boostCount += GameManager.Instance.natureBoost;
+               if ( GameManager.Instance.natureBoost>0)
+               {
+                   
+                   EventPool.Trigger<string>("ItemTrigger","shareBoost");
+               }
             }
             GameManager.Instance.Industry += GameManager.Instance.industryManCount * (1+ boostCount);
         }
@@ -138,6 +143,12 @@ public class HandManager : Singleton<HandManager>
             if (ItemManager.Instance.buffManager.GetBuffValue("shareBoost")>0)
             {
                boostCount += GameManager.Instance.industryBoost;
+               
+               if ( GameManager.Instance.industryBoost>0)
+               {
+                   
+                   EventPool.Trigger<string>("ItemTrigger","shareBoost");
+               }
             }
             GameManager.Instance.Nature += GameManager.Instance.natureManCount * (1+ boostCount);
         }
@@ -175,6 +186,8 @@ public class HandManager : Singleton<HandManager>
         {
             if (ItemManager.Instance.buffManager.hasBuff("addEnergyWhenDiscard"))
             {
+                EventPool.Trigger<string>("ItemTrigger","addEnergyWhenDiscard");
+
                 GameManager.Instance.Energy += 1;
             }
             if (handInBattle.Count == 0)

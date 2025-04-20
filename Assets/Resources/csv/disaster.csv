@@ -1,7 +1,7 @@
 ﻿identifier,actions,title,desc,canDraw,unlockAt
 noIndustryMan,disableIndustryMan,,All Scientists previously spawned are gone for the day,1,
 noNatureMan,disableNatureMan,,All Activists previously spawned are gone for the day,1,
-EndTurnFast,endTurn|2,,"Today, turns will end after playing 2 cards",1,
+EndTurnFast,endTurn|6,,"Today, turns will end after playing 6 cards",1,
 doubleLose,doubleLose,,Losses are doubles,1,
 loseMoreNature,IndustryLoseNature,,-20 Nature when an Industry gain occurs,1,
 loseMoreIndustry,natureLoseIndustry,,-20 Industry when a Nature gain occurs,1,

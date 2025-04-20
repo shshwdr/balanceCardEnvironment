@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Pool;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -145,12 +146,15 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
 
         if (ItemManager.Instance.buffManager.hasBuff("lastCardTwice") && HandManager.Instance.handInBattle.Count == 0)
         {
-            
+            EventPool.Trigger<string>("ItemTrigger","lastCardTwice");
+
             HandManager.Instance.DoCardAction(cardInfo);
         }
         
         if (ItemManager.Instance.buffManager.hasBuff("drawWhenEmpty") && HandManager.Instance.handInBattle.Count == 0)
-        {
+        {            
+            EventPool.Trigger<string>("ItemTrigger","drawWhenEmpty");
+
             HandManager.Instance.DrawCard(1);
         }
         

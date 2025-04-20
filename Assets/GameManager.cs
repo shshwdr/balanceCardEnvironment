@@ -121,16 +121,22 @@ public class GameManager : Singleton<GameManager>
             {
                 if (DisasterManager.Instance.buffManager.hasBuff("doubleLose"))
                 {
+                    
+                    EventPool.Trigger<string>("DisasterTrigger","doubleLose");
                     diff *= 2;
                 }
                 if (ItemManager.Instance.buffManager.GetBuffValue("industryLoseAddIndustryMan") > 0)
                 {
+                    EventPool.Trigger<string>("ItemTrigger","industryLoseAddIndustryMan");
+
                     GameManager.Instance.AddCharacter("industryMan",  ItemManager.Instance.buffManager.GetBuffValue("industryLoseAddIndustryMan"));
                 }
             }else if (diff > 0)
             {
                 if (DisasterManager.Instance.buffManager.hasBuff("IndustryLoseNature"))
                 {
+                    
+                    EventPool.Trigger<string>("DisasterTrigger","IndustryLoseNature");
                     Nature -= 20;
                 }
             }
@@ -149,17 +155,22 @@ public class GameManager : Singleton<GameManager>
             if (diff < 0)
             {
                 if (DisasterManager.Instance.buffManager.hasBuff("doubleLose"))
-                {
+                {                    EventPool.Trigger<string>("DisasterTrigger","doubleLose");
+
                     diff *= 2;
                 }
                 if (ItemManager.Instance.buffManager.GetBuffValue("natureLoseAddNatureMan") > 0)
                 {
+                    EventPool.Trigger<string>("ItemTrigger","natureLoseAddNatureMan");
+
                     GameManager.Instance.AddCharacter("natureMan",  ItemManager.Instance.buffManager.GetBuffValue("natureLoseAddNatureMan"));
                 }
             }else if (diff > 0)
             {
                 if (DisasterManager.Instance.buffManager.hasBuff("natureLoseIndustry"))
                 {
+                    EventPool.Trigger<string>("DisasterTrigger","natureLoseIndustry");
+
                     Industry -= 20;
                 }
             }
@@ -189,6 +200,8 @@ public class GameManager : Singleton<GameManager>
         {
             charactersDict[key] = value;
         }
+        
+        SceneRenderer.Instance.characterSpawner.SpawnPrefab(key, value);
         EventPool.Trigger("CharacterChanged");
     }
 
