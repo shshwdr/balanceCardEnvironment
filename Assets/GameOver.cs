@@ -18,7 +18,10 @@ public class GameOver : MenuBase
     // Start is called before the first frame update
     void Start()
     {
-        
+        button.onClick.AddListener(() =>
+        {
+            GameManager.Instance.RestartGame();
+        });
     }
 
     // Update is called once per frame

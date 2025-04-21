@@ -7,6 +7,7 @@ public class GameRoundManager : Singleton<GameRoundManager>
 {
     public void Init()
     {
+        currentState = StateType.start;
         Next();
     }
     

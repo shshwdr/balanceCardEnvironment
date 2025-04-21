@@ -20,7 +20,7 @@ public class MeterView : MonoBehaviour
 
     public bool isIndustry;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         resultImages = resultParent.GetComponentsInChildren<Image>();
             targetImages = targetProgressParent.GetComponentsInChildren<Image>();
