@@ -34,7 +34,7 @@ public class MeterView : MonoBehaviour
 
     public void UpdateViewForStartOfTurn()
     {
-        var currentTurnReq = CSVLoader.Instance.turnRequirementDict[GameManager.Instance.Turn];
+        var currentTurnReq = CSVLoader.Instance.turnRequirementDict[GameManager.Instance.Day];
         var rewardList = isIndustry?currentTurnReq.industryReward:currentTurnReq.natureDisaster;
         for (int i = 0; i < resultTexts.Length; i++)
         {
@@ -65,7 +65,7 @@ public class MeterView : MonoBehaviour
     public void UpdateView()
     {
         
-        var currentTurnReq = CSVLoader.Instance.turnRequirementDict[GameManager.Instance.Turn];
+        var currentTurnReq = CSVLoader.Instance.turnRequirementDict[GameManager.Instance.Day];
         var reqList = isIndustry?currentTurnReq.industryReq:currentTurnReq.natureReq;
         var rewardList = isIndustry?currentTurnReq.industryReward:currentTurnReq.natureDisaster;
         var currentValue = isIndustry? GameManager.Instance.Industry:GameManager.Instance.Nature;

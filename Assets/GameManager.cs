@@ -220,10 +220,16 @@ public class GameManager : Singleton<GameManager>
 
     public void StartNewDay()
     {
-        Industry = 0;
-        Nature = 0;
+        industry = 0;
+        nature = 0;
         
         clearBoost();
+        
+        foreach (var meterView in FindObjectsOfType<MeterView>())
+        {
+            meterView.UpdateViewForStartOfTurn();
+        }
+        
         
         EventPool.Trigger("DayChanged");
     }
