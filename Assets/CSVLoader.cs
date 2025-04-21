@@ -49,12 +49,23 @@ public class TurnRequirementInfo
     public List<int> natureDisaster;
 
 }
+public class MiscellaneousInfo
+{
+    public string key;
+    public int intValue;
+    public List<int> intValueList;
+    public List<float> floatValueList;
+    public float floatValue;
+    public string stringValue;
+}
 public class CSVLoader : Singleton<CSVLoader>
 {
     public Dictionary<string, CardInfo> cardDict = new Dictionary<string, CardInfo>();
     public Dictionary<int, TurnRequirementInfo> turnRequirementDict = new Dictionary<int, TurnRequirementInfo>();
     public Dictionary<string, DisasterInfo> disasterDict = new Dictionary<string, DisasterInfo>();
     public Dictionary<string, ItemInfo> itemDict = new Dictionary<string, ItemInfo>();
+    public Dictionary<string, MiscellaneousInfo> miscellaneousInfoDict = new Dictionary<string, MiscellaneousInfo>();
+
     // Start is called before the first frame update
     public void Init()
     {
@@ -81,6 +92,12 @@ public class CSVLoader : Singleton<CSVLoader>
         foreach (var info in items)
         {
             itemDict[info.identifier] = info;
+        }
+        var miscellaneousInfos =
+            CsvUtil.LoadObjects<MiscellaneousInfo>(GetFileNameWithABTest("miscellaneous"));
+        foreach (var info in miscellaneousInfos)
+        {
+            miscellaneousInfoDict[info.key] = info;
         }
     }
     

@@ -17,7 +17,7 @@ public class Hud : Singleton<Hud>
 
     public TMP_Text dayText;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         EventPool.OptIn("TurnChanged",UpdateText);
         EventPool.OptIn("EnergyChanged",UpdateText);

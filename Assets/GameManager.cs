@@ -224,6 +224,8 @@ public class GameManager : Singleton<GameManager>
         Nature = 0;
         
         clearBoost();
+        
+        EventPool.Trigger("DayChanged");
     }
     public void clearBoost()
     {
@@ -232,7 +234,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void InitNewTurn()
     {
-        
+        turnInDay = CSVLoader.Instance.miscellaneousInfoDict["turnPerDay"].intValue + 1;
         Turn = 1;
         Day = 1;
         HandsView.Instance.DrawCard();

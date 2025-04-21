@@ -135,7 +135,7 @@ public class HandManager : Singleton<HandManager>
                    EventPool.Trigger<string>("ItemTrigger","shareBoost");
                }
             }
-            GameManager.Instance.Industry += GameManager.Instance.industryManCount * (1+ boostCount);
+            GameManager.Instance.Industry += GameManager.Instance.industryManCount * CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue * (1+ boostCount);
         }
         if (info.types.Contains("nature"))
         {
@@ -150,7 +150,7 @@ public class HandManager : Singleton<HandManager>
                    EventPool.Trigger<string>("ItemTrigger","shareBoost");
                }
             }
-            GameManager.Instance.Nature += GameManager.Instance.natureManCount * (1+ boostCount);
+            GameManager.Instance.Nature += GameManager.Instance.natureManCount* CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue * (1+ boostCount);
         }
     }
     
