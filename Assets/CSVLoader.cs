@@ -19,25 +19,27 @@ public class CardInfo
     public int unlockAt;
 }
 
-public class DisasterInfo
+public class DisasterInfo:BaseInfo
 {
-    public string identifier;
-    public string desc;
-    public string title;
     public bool canDraw;
     public List<string> actions;
     public int unlockAt;
 }
 
-public class ItemInfo
+public class ItemInfo:BaseInfo
 {
-    public string identifier;
-    public string desc;
-    public string title;
     public bool canDraw;
     public List<string> actions;
     public int cost;
     public int unlockAt;
+}
+
+public class BaseInfo
+{
+    
+    public string identifier;
+    public string desc;
+    public string title;
 }
 
 public class TurnRequirementInfo

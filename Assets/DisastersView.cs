@@ -24,12 +24,14 @@ public class DisastersView : MonoBehaviour
         }
         for (int i = 0; i < data.Count; i++)
         {
-            parent.GetChild(i).GetComponent<TMP_Text>().text = data[i].desc;
+            parent.GetChild(i).gameObject.SetActive(true);
+            parent.GetChild(i).GetComponentInChildren<EffectIcon>().Init(data[i]);
         }
 
         for (int i = data.Count; i < parent.childCount; i++)
         {
-            parent.GetChild(i).GetComponent<TMP_Text>().text = "";
+            parent.GetChild(i).gameObject.SetActive(false);
+            //parent.GetChild(i).GetComponentInChildren<TMP_Text>().text = "";
         }
     }
     // Start is called before the first frame update
@@ -46,9 +48,9 @@ public class DisastersView : MonoBehaviour
         {
             if (data[i].actions.Contains(actionName))
             {
-                parent.GetChild(i).GetComponent<TMP_Text>().transform.localScale = Vector3.one;
-                parent.GetChild(i).GetComponent<TMP_Text>().transform.DOKill();
-                parent.GetChild(i).GetComponent<TMP_Text>().transform.DOPunchScale(Vector3.one, 0.3f);
+                parent.GetChild(i).transform.localScale = Vector3.one;
+                parent.GetChild(i).transform.DOKill();
+                parent.GetChild(i).transform.DOPunchScale(Vector3.one, 0.3f);
             }
         }
     }
