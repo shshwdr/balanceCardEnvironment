@@ -1,7 +1,7 @@
 {
   "frames": [
     {
-      "filename": "Nature-Icon.png",
+      "filename": "Nature.png",
       "frame": {
         "x": 0,
         "y": 0,
@@ -26,7 +26,7 @@
       }
     },
     {
-      "filename": "Disaster-Warning-Symbol.png",
+      "filename": "Disaster.png",
       "frame": {
         "x": 0,
         "y": 58,
@@ -51,24 +51,24 @@
       }
     },
     {
-      "filename": "Money-Honeychip.png",
+      "filename": "Industry.png",
       "frame": {
         "x": 47,
         "y": 0,
-        "w": 55,
-        "h": 48
+        "w": 52,
+        "h": 54
       },
-      "rotated": true,
+      "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 48
+        "w": 52,
+        "h": 54
       },
       "sourceSize": {
-        "w": 55,
-        "h": 48
+        "w": 52,
+        "h": 54
       },
       "pivot": {
         "x": 0.5,
@@ -76,24 +76,24 @@
       }
     },
     {
-      "filename": "Industry-Icon.png",
+      "filename": "Energy.png",
       "frame": {
         "x": 0,
         "y": 115,
-        "w": 52,
-        "h": 54
+        "w": 50,
+        "h": 53
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 52,
-        "h": 54
+        "w": 50,
+        "h": 53
       },
       "sourceSize": {
-        "w": 52,
-        "h": 54
+        "w": 50,
+        "h": 53
       },
       "pivot": {
         "x": 0.5,
@@ -101,24 +101,24 @@
       }
     },
     {
-      "filename": "Energy-Solarcomb.png",
+      "filename": "Money.png",
       "frame": {
         "x": 0,
-        "y": 169,
-        "w": 50,
-        "h": 53
+        "y": 168,
+        "w": 55,
+        "h": 48
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 50,
-        "h": 53
+        "w": 55,
+        "h": 48
       },
       "sourceSize": {
-        "w": 50,
-        "h": 53
+        "w": 55,
+        "h": 48
       },
       "pivot": {
         "x": 0.5,
@@ -132,8 +132,8 @@
     "image": "texture.png",
     "format": "RGBA8888",
     "size": {
-      "w": 95,
-      "h": 222
+      "w": 99,
+      "h": 216
     },
     "scale": 1
   }
