@@ -44,8 +44,8 @@ public class MeterView : MonoBehaviour
             }
             else
             {
-                
-                resultTexts[i].text =  rewardList [i].ToString();
+                var spriteName =  isIndustry ? "Money" : "Disaster" ;
+                resultTexts[i].text =  rewardList [i].ToString() +$"<sprite name=\"{spriteName}\">";
             }
         }
         var reqList = isIndustry?currentTurnReq.industryReq:currentTurnReq.natureReq;
@@ -53,7 +53,8 @@ public class MeterView : MonoBehaviour
         {
             {
                 
-                targetTexts[i].text = reqList[i].ToString();
+                var spriteName =  isIndustry ? "Industry" : "Nature" ;
+                targetTexts[i].text = reqList[i].ToString()+$"<sprite name=\"{spriteName}\">";
             }
         }
         UpdateView();

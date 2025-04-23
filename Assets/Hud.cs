@@ -31,7 +31,7 @@ public class Hud : Singleton<Hud>
     {
         calculateForDayText.text = $"Turn {GameManager.Instance.Turn}/{GameManager.Instance.turnInDay}";
         energyText.text = $"Energy: {GameManager.Instance.Energy}";
-        goldText.text = $"$ {GameManager.Instance.Gold}";
+        goldText.text = $"{GameManager.Instance.Gold} <sprite name=\"Money\">";
         dayText.text = $"Day {GameManager.Instance.Day}";
     }
     // Update is called once per frame

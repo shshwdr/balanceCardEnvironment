@@ -1,7 +1,7 @@
 identifier,actions,energy,types,start,title,desc,canDraw,exhaust,unlockAt
-smallIndustry,industry|25,1,industry,1,Small Industry,+20 Industry,1,0,0
+smallIndustry,industry|25,1,industry,1,Small Industry,+20 <sprite name=Industry>,1,0,0
 createScientists,industryMan|2,2,,1,Create Scientists,Spawn 2 Scientists,1,,
-smallNature,nature|25,1,nature,1,Small Nature,+20 Nature,1,,
+smallNature,nature|25,1,nature,1,Small Nature,+20 <sprite name=Nature>,1,,
 createActivists,natureMan|2,2,,1,Create Activists,Spawn 2 Activists,1,,
 reduceIndustryForDraw,industry|-10|draw|2,0,,1,Research,"-10 Industry, draw 2",1,,
 drawCards,draw|2,1,,1,drawCards,Draw two cards,1,,
