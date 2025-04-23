@@ -29,10 +29,10 @@ public class Hud : Singleton<Hud>
 
     public void UpdateText()
     {
-        calculateForDayText.text = $"Calculate Reward after {GameManager.Instance.turnInDay -  GameManager.Instance.Turn} turns";
+        calculateForDayText.text = $"Turn {GameManager.Instance.Turn}/{GameManager.Instance.turnInDay}";
         energyText.text = $"Energy: {GameManager.Instance.Energy}";
-        goldText.text = $"Gold: {GameManager.Instance.Gold}";
-        dayText.text = $"Day: {GameManager.Instance.Day}";
+        goldText.text = $"$ {GameManager.Instance.Gold}";
+        dayText.text = $"Day {GameManager.Instance.Day}";
     }
     // Update is called once per frame
     void Update()
