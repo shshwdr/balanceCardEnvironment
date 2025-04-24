@@ -56,6 +56,7 @@ MonoBehaviour:
   isDraggable: 1
   text: {fileID: 6836921053203277158}
   desc: {fileID: 3518288084848925280}
+  cardBK: {fileID: 4979977832360229499}
   energy: {fileID: 7669816550125365908}
   cost: {fileID: 8161677270741063866}
   type: {fileID: 688959493535567255}

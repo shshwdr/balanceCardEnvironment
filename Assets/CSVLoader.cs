@@ -17,6 +17,7 @@ public class CardInfo
     public bool canDraw;
     public bool exhaust;
     public int unlockAt;
+    public string cardBK;
 }
 
 public class DisasterInfo:BaseInfo

@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using Pool;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHandler,IPointerExitHandler
 {
     public bool isInShop = false;
-    public Image image;
 
     public bool isDraggable = true;
     public TMP_Text text;
     public TMP_Text desc;
     
+    [SerializeField]
+    public Image cardBK;
     public TMP_Text energy;
     public TMP_Text cost;
     public TMP_Text type;
@@ -41,7 +41,7 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
         energy.text = cardInfo.energy.ToString();
         //cost.text = cardInfo.cost.ToString();
         type.text = cardInfo.types!=null &&  cardInfo.types.Count > 0 ? cardInfo.types[0] : "";
-
+        cardBK.sprite = Resources.Load<Sprite>("Card/" + cardInfo.cardBK);
         if (canUseCard())
         {
             disable.SetActive(false);
@@ -161,6 +161,7 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
         bool foundTarget = false;
         
 
+        
         
         
         //selectionCircle.SetActive(false);

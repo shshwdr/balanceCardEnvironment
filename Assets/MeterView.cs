@@ -13,7 +13,7 @@ public class MeterView : MonoBehaviour
 
     public Transform targetProgressParent;
     
-    Image[] resultImages;
+    RewardCell[] resultImages;
     Image[] targetImages;
     TMP_Text[] resultTexts;
     TMP_Text[] targetTexts;
@@ -22,7 +22,7 @@ public class MeterView : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        resultImages = resultParent.GetComponentsInChildren<Image>();
+        resultImages = resultParent.GetComponentsInChildren<RewardCell>();
             targetImages = targetProgressParent.GetComponentsInChildren<Image>();
         resultTexts = resultParent.GetComponentsInChildren<TMP_Text>();
         targetTexts =  targetParent.GetComponentsInChildren<TMP_Text>();
@@ -54,7 +54,7 @@ public class MeterView : MonoBehaviour
             {
                 
                 var spriteName =  isIndustry ? "Industry" : "Nature" ;
-                targetTexts[i].text = reqList[i].ToString()+$"<sprite name=\"{spriteName}\">";
+                targetTexts[i].text = reqList[i].ToString();//+$"<sprite name=\"{spriteName}\">";
             }
         }
         UpdateView();
@@ -77,12 +77,12 @@ public class MeterView : MonoBehaviour
             
             if (currentValue < reqList[i])
             {
-                resultImages[i].color = Color.black;
+                resultImages[i].GetComponent<RewardCell>().check.SetActive(false);
                 targetImages[i].fillAmount = (currentValue- prevReq)/(float)(reqList[i] - prevReq);
                 if (i == 0 && firstFinished)
                 {
                     
-                    resultImages[i].color = Color.red;
+                    //resultImages[i].GetComponent<RewardCell>().check.SetActive(true);
                     currentResult = resultTexts[i].text;
                 }
             }
@@ -93,13 +93,13 @@ public class MeterView : MonoBehaviour
                 {
                     if (i == 0)
                     {
-                        resultImages[i].color = Color.red;
+                        //resultImages[i].color = Color.red;
                         currentResult = resultTexts[i].text;
                     }
                     else
                     {
                         
-                        resultImages[i].color = Color.green;
+                        resultImages[i].GetComponent<RewardCell>().check.SetActive(true);
                         currentResult = resultTexts[i].text;
                     }
                     firstFinished = false;
@@ -107,7 +107,7 @@ public class MeterView : MonoBehaviour
                 else
                 {
                     
-                    resultImages[i].color = new Color(0.5f,1,0.5f);
+                    resultImages[i].GetComponent<RewardCell>().check.SetActive(true);
                 }
                 
                 targetImages[i].fillAmount = (currentValue- prevReq)/(float)(reqList[i] - prevReq);
