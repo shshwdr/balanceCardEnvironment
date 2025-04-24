@@ -40,10 +40,12 @@ public class MeterView : MonoBehaviour
         {
             if (rewardList[i] == -1)
             {
-                resultTexts[i].text = "DIE";
+                //resultTexts[i].text = "DIE";
+                resultImages[i].gameObject.SetActive(false);
             }
             else
             {
+                resultImages[i].gameObject.SetActive(true);
                 var spriteName =  isIndustry ? "Money" : "Disaster" ;
                 resultTexts[i].text =  rewardList [i].ToString() +$"<sprite name=\"{spriteName}\">";
             }
@@ -90,7 +92,7 @@ public class MeterView : MonoBehaviour
             else if (currentValue >= reqList[i])
             {
                 resultImages[i].GetComponent<RewardCell>().check.SetActive(true);
-                if (firstFinished)
+                if (firstFinished &&rewardList[i] != -1)
                 {
                     // if (i == 0)
                     // {
