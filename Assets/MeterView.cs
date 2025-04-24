@@ -65,7 +65,7 @@ public class MeterView : MonoBehaviour
     public string currentResult = "";
     public void UpdateView()
     {
-        
+        currentResult = "DIE";
         var currentTurnReq = CSVLoader.Instance.turnRequirementDict[GameManager.Instance.Day];
         var reqList = isIndustry?currentTurnReq.industryReq:currentTurnReq.natureReq;
         var rewardList = isIndustry?currentTurnReq.industryReward:currentTurnReq.natureDisaster;
@@ -79,28 +79,28 @@ public class MeterView : MonoBehaviour
             {
                 resultImages[i].GetComponent<RewardCell>().check.SetActive(false);
                 targetImages[i].fillAmount = (currentValue- prevReq)/(float)(reqList[i] - prevReq);
-                if (i == 0 && firstFinished)
-                {
-                    
-                    //resultImages[i].GetComponent<RewardCell>().check.SetActive(true);
-                    currentResult = resultTexts[i].text;
-                }
+                // if (i == 0 && firstFinished)
+                // {
+                //     
+                //     //resultImages[i].GetComponent<RewardCell>().check.SetActive(true);
+                //     currentResult = resultTexts[i].text;
+                // }
             }
 
             else if (currentValue >= reqList[i])
             {
+                resultImages[i].GetComponent<RewardCell>().check.SetActive(true);
                 if (firstFinished)
                 {
-                    if (i == 0)
-                    {
-                        //resultImages[i].color = Color.red;
-                        currentResult = resultTexts[i].text;
-                    }
-                    else
+                    // if (i == 0)
+                    // {
+                    //     //resultImages[i].color = Color.red;
+                    //     currentResult = resultTexts[i].text;
+                    // }
+                    // else
                     {
                         
-                        resultImages[i].GetComponent<RewardCell>().check.SetActive(true);
-                        currentResult = resultTexts[i].text;
+                        currentResult = rewardList[i].ToString();
                     }
                     firstFinished = false;
                 }
