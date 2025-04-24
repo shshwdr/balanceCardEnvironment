@@ -1,9 +1,9 @@
 identifier,actions,energy,types,start,title,desc,canDraw,exhaust,unlockAt,cardBK
-smallIndustry,industry|25,1,industry,1,Industry Work,+25 <sprite name=Industry>,1,0,0,industry
-createScientists,industryMan|2,2,,1,For Science!,Spawn 2 Scientists,1,,,industrySpecial
-smallNature,nature|25,1,nature,1,Nature Work,+25 <sprite name=Nature>,1,,,nature
-createActivists,natureMan|2,2,,1,Ecology!,Spawn 2 Activists,1,,,natureSpecial
-drawCards,draw|2,1,,1,Reflexion,Draw two cards,1,,,neutral
+smallIndustry,industry|25,1,industry,4,Industry Work,+25 <sprite name=Industry>,1,0,0,industry
+createScientists,industryMan|2,2,,2,For Science!,Spawn 2 Scientists,1,,,industrySpecial
+smallNature,nature|25,1,nature,4,Nature Work,+25 <sprite name=Nature>,1,,,nature
+createActivists,natureMan|2,2,,2,Ecology!,Spawn 2 Activists,1,,,natureSpecial
+drawCards,draw|2,1,,2,Reflexion,Draw two cards,1,,,neutral
 reduceIndustryForDraw,industry|-10|draw|2,0,,,Research,"-10 <sprite name=Industry>, draw 2",1,,,industry
 safeIndustry,industry|5,0,industry,,Stimulus,+5 <sprite name=Industry>,1,,,industry
 safeNature,nature|5,0,nature,,Sprout,+5 <sprite name=Nature>,1,,,nature
