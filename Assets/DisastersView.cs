@@ -50,7 +50,7 @@ public class DisastersView : MonoBehaviour
             {
                 parent.GetChild(i).transform.localScale = Vector3.one;
                 parent.GetChild(i).transform.DOKill();
-                parent.GetChild(i).transform.DOPunchScale(Vector3.one, 0.3f);
+                parent.GetChild(i).transform.DOPunchScale(Vector3.one, 0.5f);
             }
         }
     }
