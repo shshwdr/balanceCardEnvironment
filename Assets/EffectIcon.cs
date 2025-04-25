@@ -12,7 +12,7 @@ public class EffectIcon : MonoBehaviour
     public TMP_Text text;
     public Image image;
     public string desc;
-    private BaseInfo info;
+    public BaseInfo info;
 
     private void Start()
     {

@@ -42,13 +42,13 @@ public class GameRoundManager : Singleton<GameRoundManager>
                 StartCoroutine(showReward());
                 break;
             case StateType.reward:
-                currentState = StateType.pickCard;
-                StartCoroutine(showPickCard());
-                break;
-            case StateType.pickCard:
                 currentState = StateType.buyItem;
                 StartCoroutine(showPickItem());
                 break;
+            // case StateType.pickCard:
+            //     currentState = StateType.buyItem;
+            //     StartCoroutine(showPickItem());
+            //     break;
             case StateType.buyItem:
                 currentState = StateType.battle;
                 startBattle();
@@ -104,13 +104,13 @@ public class GameRoundManager : Singleton<GameRoundManager>
         
     }
 
-    IEnumerator showPickCard()
-    {
-        FindObjectOfType<ShopMenu>().ShowCardSelect();
-        yield return new WaitUntil(() => FindObjectOfType<ShopMenu>().IsActive == false);
-        Next();
-        
-    }
+    // IEnumerator showPickCard()
+    // {
+    //     FindObjectOfType<ShopMenu>().ShowCardSelect();
+    //     yield return new WaitUntil(() => FindObjectOfType<ShopMenu>().IsActive == false);
+    //     Next();
+    //     
+    // }
     
     IEnumerator showPickItem()
     {

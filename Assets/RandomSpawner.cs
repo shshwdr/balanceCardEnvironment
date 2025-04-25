@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class RandomSpawner : MonoBehaviour
 {
     public BoxCollider2D spawnArea;            // 限制生成区域的 BoxCollider2D
+    public BoxCollider2D spawnArea2;            // 限制生成区域的 BoxCollider2D
     public float minDistance = 2f;             // 新生成物体与其他物体的最小距离
 
     void Start()
@@ -20,6 +21,11 @@ public class RandomSpawner : MonoBehaviour
 
     void SpawnPrefab(string name)
     {
+        var pa = spawnArea2;
+        if (name == "industryMan")
+        {
+            pa = spawnArea;
+        }
         // 获取所有当前子物体的位置
         List<Vector2> occupiedPositions = new List<Vector2>();
         foreach (Transform child in transform)
