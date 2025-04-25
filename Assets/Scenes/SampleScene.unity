@@ -1827,6 +1827,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63443883a489f1489fea03812f4e24c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicEvent:
+    Guid:
+      Data1: 483744480
+      Data2: 1212173278
+      Data3: 253662650
+      Data4: -1019590562
+    Path: event:/Music/music_gameplay
   turnInDay: 3
 --- !u!4 &385214474
 Transform:
