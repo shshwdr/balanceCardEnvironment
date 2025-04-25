@@ -172,7 +172,28 @@ public class HandManager : Singleton<HandManager>
             GameManager.Instance.Nature += GameManager.Instance.natureManCount* CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue * (1+ boostCount);
         }
     }
-    
+
+    public int effectiveNatureBoost()
+    {
+        
+        var boostCount = GameManager.Instance.natureBoost;
+        if (ItemManager.Instance.buffManager.GetBuffValue("shareBoost") > 0)
+        {
+            boostCount += GameManager.Instance.industryBoost;
+        }
+        return boostCount;
+    }
+
+    public int effectiveIndustryBoost()
+    {
+        
+        var boostCount = GameManager.Instance.industryBoost;
+        if (ItemManager.Instance.buffManager.GetBuffValue("shareBoost") > 0)
+        {
+            boostCount += GameManager.Instance.natureBoost;
+        }
+        return boostCount;
+    }
     
 
     public void DrawSpecificCard(string key,bool fromdeck = true)

@@ -40,7 +40,7 @@ public class DamageNumbersManager : Singleton<DamageNumbersManager>
     }
 
     private float flyTime = 1f;
-    private float cooldown = 0.3f;
+    private float cooldown = 0.5f;
     private float cooldownTimer = 0;
     private void Update()
     {

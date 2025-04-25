@@ -58,8 +58,7 @@ public class BoostIcon : MonoBehaviour
 
     void UpdateIcon()
     {
-        
-        var value = isIndustry ? GameManager.Instance.industryBoost : GameManager.Instance.natureBoost;
+        var value = isIndustry ? HandManager.Instance.effectiveIndustryBoost() : HandManager.Instance.effectiveNatureBoost();
         text.text = $"Boost x{value }";
     }
 }
