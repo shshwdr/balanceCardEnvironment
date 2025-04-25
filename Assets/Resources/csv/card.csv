@@ -13,5 +13,5 @@ boostScientists,boostIndustry|1,2,,,Science Boost,Boost Scientists this turn,1,,
 boostActivists,boostNature|1,2,,,Ecology Boost,Boost Activists this turn,1,,,nature,1
 doubleBoost,doubleBoost,2,,,Double Boost,Double the current Boosts,1,,,neutral,1
 refreshHand,industry|-10|nature|-10|discardHand|draw|5,1,,,New Vision,"-10 <sprite name=Industry>, -10 <sprite name=Nature>,  discard your hand and draw 5 cards",1,,,neutral,1
-safeNeutral,industry|+1|nature|+1,0,industry && nature,,Conciliation,"+1 <sprite name=Industry>, +1 <sprite name=Nature>",1,,,neutral,1
+safeNeutral,industry|+1|nature|+1,0,industry|nature,,Conciliation,"+1 <sprite name=Industry>, +1 <sprite name=Nature>",1,,,neutral,1
 getEnergy,industry|-10|energy|1,0,,0,getEnergy,"-10 <sprite name=Industry>, +1 <sprite name=Energy>",1,,,neutral,1
