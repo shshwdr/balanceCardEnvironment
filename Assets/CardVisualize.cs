@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHandler,IPointerExitHandler
 {
@@ -27,6 +28,7 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
 
 
     public Transform hoverTrans;
+    public float hoverTime = 0.15f;
     Vector3 startPos;
     private Vector3 hoverPos;
 
@@ -194,7 +196,9 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
         {
             return;
         }
-        transform.position = hoverPos;
+
+        MoveCardUp(true);
+        //transform.position = hoverPos;
 
     }
 
@@ -220,8 +224,20 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
     {
         if (this && transform)
         {
-            
-            transform.position = startPos;
+            MoveCardUp(false);
+            //transform.position = startPos;
         }
+    }
+
+    private void MoveCardUp(bool status)
+    {
+        Vector3 finalPos = startPos;
+ 
+        //If status is true increase scale
+        if (status)
+            finalPos = hoverPos;
+ 
+        //transform.localScale = finalScale;
+        transform.DOMove(finalPos, hoverTime);
     }
 }
