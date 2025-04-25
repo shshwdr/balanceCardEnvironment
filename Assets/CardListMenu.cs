@@ -28,7 +28,7 @@ public class CardListMenu : MenuBase
              return;
         }
         title.text = "Cards In Hand";
-        var cards = HandManager.Instance.handInBattle;
+        var cards = HandManager.Instance.deck;
         UpdateCards(cards);
     }
 

@@ -50,7 +50,7 @@ public class HandsView : Singleton<HandsView>
 
     public void UpdatePileNumber()
     {
-        deckButton.GetComponentInChildren<TMP_Text>().text = HandManager.Instance.handInBattle.Count.ToString();
+        deckButton.GetComponentInChildren<TMP_Text>().text = HandManager.Instance.deck.Count.ToString();
         discardButton.GetComponentInChildren<TMP_Text>().text = HandManager.Instance.discardedInBattle.Count.ToString();
     }
 
