@@ -61,12 +61,12 @@ public class HandManager : Singleton<HandManager>
             switch (info.actions[i])
             {
                 case "industry":
-                {
-
+                {            
                     i++;
                     int value = int.Parse(info.actions[i]);
 
                     GameManager.Instance.Industry += value;
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_industry_card");
                     break;
                 }
                 case "nature":
@@ -75,35 +75,46 @@ public class HandManager : Singleton<HandManager>
                     int value = int.Parse(info.actions[i]);
 
                     GameManager.Instance.Nature += value;
-                    break;
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_nature_card");
+                        break;
                 }
                 case "industryMan":
+                    {
+                        i++;
+                        int value = int.Parse(info.actions[i]);
+                        GameManager.Instance.AddCharacter(action, value);
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_spawn_scientist");
+                        break;
+                    }
                 case "natureMan":
                 {
                     i++;
                     int value = int.Parse(info.actions[i]);
                     GameManager.Instance.AddCharacter(action, value);
-                    break;
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_spawn_activist");
+                        break;
                 }
                 case "draw":
                 {
                     i++;
                     int value = int.Parse(info.actions[i]);
                     HandsView.Instance.DrawCards(value);
-                    break;
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_neutral_card");
+                        break;
                 }
                 case "discard":
                 {
                     i++;
                     int value = int.Parse(info.actions[i]);
                     HandsView.Instance.DiscardCards(value);
-                    break;
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_neutral_card");
+                        break;
                 }
                 case "discardHand":
                 {
                     HandsView.Instance.DiscardHand();
-
-                    break;
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_neutral_card");
+                        break;
                 }
                 case "doubleBoost":
                 {
@@ -123,7 +134,8 @@ public class HandManager : Singleton<HandManager>
                     i++;
                     int value = int.Parse(info.actions[i]);
                     GameManager.Instance.AddEnergy(value);
-                    break;
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_neutral_card");
+                        break;
                 }
         }
         }
@@ -250,6 +262,7 @@ public class HandManager : Singleton<HandManager>
     {
         ClearHand();
         DrawHand();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_draw_card");
     }
 
     public void ClearHand()

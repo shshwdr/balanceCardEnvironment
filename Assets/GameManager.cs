@@ -333,5 +333,16 @@ public class GameManager : Singleton<GameManager>
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        musicGameplay.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public void MusicDisaster()
+    {
+        musicGameplay.setParameterByName("Player Status", 1);
+    }
+
+    public void MusicDisasterClean()
+    {
+        musicGameplay.setParameterByName("Player Status", 0);
     }
 }
