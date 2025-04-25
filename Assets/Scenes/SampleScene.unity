@@ -1834,11 +1834,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 483744480
+      Data2: 1212173278
+      Data3: 253662650
+      Data4: -1019590562
+    Path: event:/Music/music_gameplay
   turnInDay: 3
 --- !u!4 &385214474
 Transform:
