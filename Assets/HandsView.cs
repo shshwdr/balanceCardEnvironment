@@ -14,6 +14,9 @@ public class HandsView : Singleton<HandsView>
     public CardVisualize cardPrefab;
     [FormerlySerializedAs("drawButton")] public Button endDayButton;
 
+    public Button deckButton;
+    public Button discardButton;
+
     public void InitLevel()
     {
     }
@@ -33,6 +36,22 @@ public class HandsView : Singleton<HandsView>
           //  FindObjectOfType<TutorialMenu>(). FinishUseRedraw();
         });
         //endDayButton.gameObject.SetActive(false);
+        deckButton.onClick.AddListener(() =>
+        {
+            FindObjectOfType<CardListMenu>().ShowCardInDeckInBattle();
+        });
+        discardButton.onClick.AddListener(() =>
+        {
+            FindObjectOfType<CardListMenu>().ShowCardInDiscardInBattle();
+        });
+        //UpdatePileNumber();
+        EventPool.OptIn("HandUpdate", UpdatePileNumber);
+    }
+
+    public void UpdatePileNumber()
+    {
+        deckButton.GetComponentInChildren<TMP_Text>().text = HandManager.Instance.handInBattle.Count.ToString();
+        discardButton.GetComponentInChildren<TMP_Text>().text = HandManager.Instance.discardedInBattle.Count.ToString();
     }
 
     public void EndTurn()
@@ -82,6 +101,8 @@ public class HandsView : Singleton<HandsView>
             var go = Instantiate(cardPrefab.gameObject, parent);
             go.GetComponent<CardVisualize>().Init(info);
         }
+
+        UpdatePileNumber();
     }
 
 }

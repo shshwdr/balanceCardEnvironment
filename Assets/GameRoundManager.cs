@@ -19,6 +19,14 @@ public class GameRoundManager : Singleton<GameRoundManager>
         pickCard,
         buyItem,
     };
+
+    public bool isInBattle
+    {
+         get
+         {
+             return currentState == StateType.battle;
+         }
+    }
     private StateType currentState = StateType.start;
     public void Next()
     {

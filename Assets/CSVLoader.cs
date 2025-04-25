@@ -33,6 +33,7 @@ public class ItemInfo:BaseInfo
     public List<string> actions;
     public int cost;
     public int unlockAt;
+    public string image;
 }
 
 public class BaseInfo

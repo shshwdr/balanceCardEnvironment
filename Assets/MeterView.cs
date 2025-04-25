@@ -12,6 +12,7 @@ public class MeterView : MonoBehaviour
     public Transform targetParent;
 
     public Transform targetProgressParent;
+    public TMP_Text value;
     
     RewardCell[] resultImages;
     Image[] targetImages;
@@ -72,6 +73,16 @@ public class MeterView : MonoBehaviour
         var reqList = isIndustry?currentTurnReq.industryReq:currentTurnReq.natureReq;
         var rewardList = isIndustry?currentTurnReq.industryReward:currentTurnReq.natureDisaster;
         var currentValue = isIndustry? GameManager.Instance.Industry:GameManager.Instance.Nature;
+        value.text = currentValue +"/" + reqList.LastItem();
+        if (currentValue < reqList[0])
+        {
+            value.color = Color.red;
+            
+        }
+        else
+        {
+            value.color = Color.black;
+        }
         bool firstFinished = true;
         for (int i = rewardList.Count-1;i>=0;i--)
         {

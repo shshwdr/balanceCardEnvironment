@@ -26,6 +26,8 @@ public class ItemsView : MonoBehaviour
         {
             parent.GetChild(i).gameObject.SetActive(true);
             parent.GetChild(i).GetComponentInChildren<EffectIcon>().Init(data[i]);
+            parent.GetChild(i).GetComponentInChildren<EffectIcon>().image.sprite =
+                Resources.Load<Sprite>("item/" + data[i].image);
         }
 
         for (int i = data.Count; i < parent.childCount; i++)

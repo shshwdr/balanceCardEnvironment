@@ -66,6 +66,12 @@ public class GameManager : Singleton<GameManager>
         EventPool.Trigger("StateChanged");
     }
 
+    public void AddEnergy(int value)
+    {
+        Energy += value;
+        EventPool.Trigger("EnergyChanged");
+    }
+
     public int GetState(string key)
     {
         if (states.ContainsKey(key))

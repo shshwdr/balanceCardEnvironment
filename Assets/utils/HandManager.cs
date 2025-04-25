@@ -62,27 +62,27 @@ public class HandManager : Singleton<HandManager>
             {
                 case "industry":
                 {
-                    
+
                     i++;
                     int value = int.Parse(info.actions[i]);
-                     
-                         GameManager.Instance.Industry += value;
+
+                    GameManager.Instance.Industry += value;
                     break;
                 }
                 case "nature":
                 {
                     i++;
                     int value = int.Parse(info.actions[i]);
-                    
+
                     GameManager.Instance.Nature += value;
                     break;
                 }
                 case "industryMan":
-                    case "natureMan":
+                case "natureMan":
                 {
                     i++;
                     int value = int.Parse(info.actions[i]);
-                      GameManager.Instance.AddCharacter(action, value);
+                    GameManager.Instance.AddCharacter(action, value);
                     break;
                 }
                 case "draw":
@@ -102,7 +102,7 @@ public class HandManager : Singleton<HandManager>
                 case "discardHand":
                 {
                     HandsView.Instance.DiscardHand();
-                    
+
                     break;
                 }
                 case "doubleBoost":
@@ -118,7 +118,14 @@ public class HandManager : Singleton<HandManager>
                     GameManager.Instance.AddState(action, value);
                     break;
                 }
-            }
+                case "energy":
+                {
+                    i++;
+                    int value = int.Parse(info.actions[i]);
+                    GameManager.Instance.AddEnergy(value);
+                    break;
+                }
+        }
         }
 
 
@@ -273,6 +280,7 @@ public class HandManager : Singleton<HandManager>
     public void AddCard(CardInfo info)
     {
         ownedCards.Add(info);
+        EventPool.Trigger("HandUpdate");
     }
     public void Init()
     {
