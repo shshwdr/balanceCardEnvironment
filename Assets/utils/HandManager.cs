@@ -262,7 +262,7 @@ public class HandManager : Singleton<HandManager>
     {
         ClearHand();
         DrawHand();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_draw_card");
+      
     }
 
     public void ClearHand()
@@ -275,8 +275,9 @@ public class HandManager : Singleton<HandManager>
     {
         discardedInBattle.AddRange(handInBattle);
         handInBattle.Clear();
-        
-        
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_draw_card");
+
+
         for (int i = 0; i < handMax; i++)
         {
             if (deck.Count == 0)
