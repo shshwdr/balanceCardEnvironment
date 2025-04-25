@@ -34,21 +34,21 @@ public class RandomSpawner : MonoBehaviour
         }
 
         // 寻找一个尽可能远的位置
-        Vector2 spawnPosition = FindFarAwayPosition(occupiedPositions);
+        Vector2 spawnPosition = FindFarAwayPosition(occupiedPositions,pa);
 
         // 实例化 Prefab
         var prefab = Resources.Load<GameObject>("characters/"+name);
         Instantiate(prefab, spawnPosition, Quaternion.identity, transform);
     }
 
-    Vector2 FindFarAwayPosition(List<Vector2> occupiedPositions)
+    Vector2 FindFarAwayPosition(List<Vector2> occupiedPositions ,BoxCollider2D pa)
     {
         Vector2 bestPosition = Vector2.zero;
         float maxDistance = 0f;
 
         // 设置边界
-        Vector2 min = spawnArea.bounds.min;
-        Vector2 max = spawnArea.bounds.max;
+        Vector2 min = pa.bounds.min;
+        Vector2 max = pa.bounds.max;
 
         // 随机尝试多个位置
         for (int i = 0; i < 10; i++)
