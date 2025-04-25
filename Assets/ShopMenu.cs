@@ -14,6 +14,7 @@ public class ShopMenu : MenuBase
         {
          cell.Init(allCandidates.PickItem());
          cell.cardVisualize.isInShop = true;
+
         }
     }
 
@@ -25,6 +26,8 @@ public class ShopMenu : MenuBase
         {
             cell.InitItem(allCandidates.PickItem());
             cell.cardVisualize.isInShop = true;
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_ui_click");
         }
     }
 }

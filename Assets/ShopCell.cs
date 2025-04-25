@@ -36,6 +36,8 @@ public class ShopCell : MonoBehaviour
             FindObjectOfType<ShopMenu>().Hide();
             GameManager.Instance.Gold -= info.cost;
             //GameManager.Instance.Next();
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_buy_joker");
         });
     }
 }

@@ -124,6 +124,7 @@ public class GameRoundManager : Singleton<GameRoundManager>
     {
         
         FindObjectOfType<GameOver>().ShowText(t);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_game_over");
     }
 
     void startBattle()
@@ -133,6 +134,6 @@ public class GameRoundManager : Singleton<GameRoundManager>
     
     public void GameWin()
     {
-
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_level_win");
     }
 }

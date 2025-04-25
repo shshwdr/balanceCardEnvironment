@@ -5,9 +5,13 @@ using System.Linq;
 using Pool;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Profiling.RawFrameDataView;
 
 public class GameManager : Singleton<GameManager>
 {
+    private FMOD.Studio.EventInstance musicGameplay;
+    public FMODUnity.EventReference musicEvent;
+
     private void Awake()
     {
         CSVLoader.Instance.Init();
@@ -264,6 +268,9 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         InitNewTurn();
+
+        musicGameplay = FMODUnity.RuntimeManager.CreateInstance(musicEvent);
+        musicGameplay.start();
     }
 
     // Update is called once per frame
@@ -326,5 +333,16 @@ public class GameManager : Singleton<GameManager>
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        musicGameplay.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public void MusicDisaster()
+    {
+        musicGameplay.setParameterByName("Player Status", 1);
+    }
+
+    public void MusicDisasterClean()
+    {
+        musicGameplay.setParameterByName("Player Status", 0);
     }
 }
