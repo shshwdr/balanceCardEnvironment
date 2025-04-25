@@ -315,6 +315,12 @@ public class GameManager : Singleton<GameManager>
             
             DisasterManager.Instance.AddAll();
         }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            
+            GameManager.Instance.AddCharacter("industryMan", 2);
+            GameManager.Instance.AddCharacter("natureMan", 2);
+        }
     }
 
     public void RestartGame()
