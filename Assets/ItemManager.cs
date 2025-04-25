@@ -12,6 +12,7 @@ public class ItemManager : Singleton<ItemManager>
     {
         foreach (var v in CSVLoader.Instance.itemDict.Values)
         {
+            if (v.canDraw)
              AddItem(v);
         }
     }

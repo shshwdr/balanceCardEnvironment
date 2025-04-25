@@ -14,6 +14,7 @@ public class ShopCell : MonoBehaviour
         cardVisualize.Init(info);
 
         buyButton.GetComponentInChildren<TMP_Text>().text = "Select";
+        buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(() =>
         {
             HandManager.Instance.AddCard(info);
@@ -28,6 +29,7 @@ public class ShopCell : MonoBehaviour
         
         buyButton.GetComponentInChildren<TMP_Text>().text = $"Buy ${info.cost}";
         buyButton.interactable = GameManager.Instance.Gold >= info.cost;
+        buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(() =>
         {
             ItemManager.Instance.AddItem(info);

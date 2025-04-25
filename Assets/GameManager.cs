@@ -239,6 +239,7 @@ public class GameManager : Singleton<GameManager>
         
         
         EventPool.Trigger("DayChanged");
+        HandsView.Instance.ResetHandAndDrawHand();
     }
     public void clearBoost()
     {
@@ -250,7 +251,7 @@ public class GameManager : Singleton<GameManager>
         turnInDay = CSVLoader.Instance.miscellaneousInfoDict["turnPerDay"].intValue + 1;
         Turn = 1;
         Day = 1;
-        HandsView.Instance.DrawCard();
+        HandsView.Instance.ResetHandAndDrawHand();
         foreach (var meterView in FindObjectsOfType<MeterView>())
         {
             meterView.UpdateViewForStartOfTurn();
@@ -308,6 +309,10 @@ public class GameManager : Singleton<GameManager>
         {
             
             ItemManager.Instance.AddAll();
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            
             DisasterManager.Instance.AddAll();
         }
     }

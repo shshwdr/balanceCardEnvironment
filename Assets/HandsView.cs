@@ -50,15 +50,23 @@ public class HandsView : Singleton<HandsView>
 
     public void UpdatePileNumber()
     {
-        deckButton.GetComponentInChildren<TMP_Text>().text = HandManager.Instance.deck.Count.ToString();
-        discardButton.GetComponentInChildren<TMP_Text>().text = HandManager.Instance.discardedInBattle.Count.ToString();
+        bool isInBattle = GameRoundManager.Instance.isInBattle;
+        deckButton.GetComponentInChildren<TMP_Text>().text = isInBattle? HandManager.Instance.deck.Count.ToString(): HandManager.Instance.ownedCards.Count.ToString();
+        discardButton.GetComponentInChildren<TMP_Text>().text = isInBattle?HandManager.Instance.discardedInBattle.Count.ToString():0.ToString();
     }
 
     public void EndTurn()
     {
         
         GameManager.Instance.Turn++;
-        DrawCard();
+        if (GameManager.Instance.Turn == 1)
+        {
+            ClearHand();
+        }
+        else
+        {
+            DrawHand();
+        }
     }
 
     // public void showRedrawButton()
@@ -66,12 +74,23 @@ public class HandsView : Singleton<HandsView>
     //     endDayButton.gameObject.SetActive(true);
     // }
 
-    public void DrawCard()
+    public void ResetHandAndDrawHand()
+    {
+        HandManager.Instance.ClearHandAndDrawHand();
+        UpdateHands();
+    }
+    public void DrawHand()
     {
         HandManager.Instance.DrawHand();
         UpdateHands();
 
         //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_draw_card");
+    }
+
+    public void ClearHand()
+    {
+        HandManager.Instance.ClearHand();
+        UpdateHands();
     }
 
     public void DrawCards(int count)

@@ -245,16 +245,31 @@ public class HandManager : Singleton<HandManager>
         }
         EventPool.Trigger("DrawHand");
     }
-    
+
+    public void ClearHandAndDrawHand()
+    {
+        ClearHand();
+        DrawHand();
+    }
+
+    public void ClearHand()
+    {
+        InitDeck();
+        discardedInBattle.Clear();
+        handInBattle.Clear();
+    }
     public void DrawHand()
     {
         discardedInBattle.AddRange(handInBattle);
         handInBattle.Clear();
+        
+        
         for (int i = 0; i < handMax; i++)
         {
             if (deck.Count == 0)
             {
-                deck = discardedInBattle;
+                deck = discardedInBattle.ToList();
+                discardedInBattle.Clear();
             }
 
             if (deck.Count == 0)
