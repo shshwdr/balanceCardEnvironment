@@ -155,7 +155,7 @@ public class HandManager : Singleton<HandManager>
                }
             }
             GameManager.Instance.Industry += GameManager.Instance.industryManCount * CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue * (1+ boostCount);
-
+            if (GameManager.Instance.industryManCount>0)
             foreach (var animator in SceneRenderer.Instance.characterSpawner.spawnArea.transform.GetComponentsInChildren<Animator>())
             {
                 animator.SetTrigger("use");
@@ -175,9 +175,13 @@ public class HandManager : Singleton<HandManager>
                }
             }
             GameManager.Instance.Nature += GameManager.Instance.natureManCount* CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue * (1+ boostCount);
-            foreach (var animator in SceneRenderer.Instance.characterSpawner.spawnArea2.transform.GetComponentsInChildren<Animator>())
-            {
-                animator.SetTrigger("use");
+            
+            {if (GameManager.Instance.natureManCount>0)
+                
+                foreach (var animator in SceneRenderer.Instance.characterSpawner.spawnArea2.transform.GetComponentsInChildren<Animator>())
+                {
+                    animator.SetTrigger("use");
+                }
             }
         }
     }

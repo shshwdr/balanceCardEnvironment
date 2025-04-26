@@ -34,6 +34,7 @@ public class CharacterIcon : MonoBehaviour
         eventTrigger.triggers.Add(entry2);
         
         EventPool.OptIn("CharacterChanged",updateCharacter);
+        EventPool.OptIn("DisasterChanged",updateCharacter);
         
     }
     public TMP_Text characterCount;

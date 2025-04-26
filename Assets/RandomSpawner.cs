@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Pool;
+using Unity.VisualScripting;
 
 public class RandomSpawner : MonoBehaviour
 {
@@ -7,8 +9,23 @@ public class RandomSpawner : MonoBehaviour
     public BoxCollider2D spawnArea2;            // 限制生成区域的 BoxCollider2D
     public float minDistance = 2f;             // 新生成物体与其他物体的最小距离
 
+    public void UpdateAll()
+    {
+            foreach (var animator in spawnArea2.transform.GetComponentsInChildren<Animator>())
+            {
+                var isDisabled = DisasterManager.Instance.buffManager.hasBuff("disableNatureMan");
+                
+                animator.GetComponent<SpriteRenderer>().color = isDisabled?Color.gray:Color.white;
+            }
+            foreach (var animator in spawnArea.transform.GetComponentsInChildren<Animator>())
+            {
+                var isDisabled = DisasterManager.Instance.buffManager.hasBuff("disableIndustryMan");
+                animator.GetComponent<SpriteRenderer>().color = isDisabled ? Color.gray : Color.white;
+            }
+    }
     void Start()
     {
+        EventPool.OptIn("DisasterChanged", UpdateAll);
     }
 
     public void SpawnPrefab(string name, int count)
@@ -40,6 +57,11 @@ public class RandomSpawner : MonoBehaviour
         var prefab = Resources.Load<GameObject>("characters/"+name);
         var go =Instantiate(prefab, spawnPosition, Quaternion.identity, transform);
         go.transform.parent = pa.transform;
+
+        var name2 = name;
+        name2 = name2.FirstCharacterToUpper();
+        var isDisabled = DisasterManager.Instance.buffManager.hasBuff("disable"+name2);
+        go.GetComponentInChildren<Animator>().GetComponent<SpriteRenderer>().color = isDisabled ? Color.gray : Color.white;
     }
 
     Vector2 FindFarAwayPosition(List<Vector2> occupiedPositions ,BoxCollider2D pa)

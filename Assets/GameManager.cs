@@ -226,9 +226,9 @@ public class GameManager : Singleton<GameManager>
         EventPool.Trigger("CharacterChanged");
     }
 
-    public int industryManCount => GetCharacter("industryMan");
+    public int industryManCount => DisasterManager.Instance.buffManager.hasBuff("disableIndustryMan")? 0 : GetCharacter("industryMan");
     public int industryBoost => GetState("boostIndustry");
-    public int natureManCount => GetCharacter("natureMan");
+    public int natureManCount =>  DisasterManager.Instance.buffManager.hasBuff("disableNatureMan")? 0 : GetCharacter("natureMan");
     public int natureBoost => GetState("boostNature");
     public int GetCharacter(string key)
     {

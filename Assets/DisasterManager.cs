@@ -42,6 +42,7 @@ public class DisasterManager : Singleton<DisasterManager>
             }
         }
         
+        
         EventPool.Trigger("DisasterChanged");
     }
 
