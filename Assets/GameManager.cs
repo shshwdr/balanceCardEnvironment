@@ -154,7 +154,7 @@ public class GameManager : Singleton<GameManager>
                 {
                     
                     EventPool.Trigger<string>("DisasterTrigger","IndustryLoseNature");
-                    Nature -= 20;
+                    Nature -= 10;
                     FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster_loss");
                 }
             }
@@ -191,7 +191,7 @@ public class GameManager : Singleton<GameManager>
                 {
                     EventPool.Trigger<string>("DisasterTrigger","natureLoseIndustry");
 
-                    Industry -= 20;
+                    Industry -= 10;
                     FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster_loss");
                 }
             }
@@ -226,9 +226,9 @@ public class GameManager : Singleton<GameManager>
         EventPool.Trigger("CharacterChanged");
     }
 
-    public int industryManCount => DisasterManager.Instance.buffManager.hasBuff("disableIndustryMan")? 0 : GetCharacter("industryMan");
+    public int industryManCount => DisasterManager.Instance.buffManager.hasBuff("disableIndustryMan")? GetCharacter("industryMan")/2 : GetCharacter("industryMan");
     public int industryBoost => GetState("boostIndustry");
-    public int natureManCount =>  DisasterManager.Instance.buffManager.hasBuff("disableNatureMan")? 0 : GetCharacter("natureMan");
+    public int natureManCount =>  DisasterManager.Instance.buffManager.hasBuff("disableNatureMan")? GetCharacter("natureMan")/2 : GetCharacter("natureMan");
     public int natureBoost => GetState("boostNature");
     public int GetCharacter(string key)
     {
