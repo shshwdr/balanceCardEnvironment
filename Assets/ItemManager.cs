@@ -47,5 +47,6 @@ public class ItemManager : Singleton<ItemManager>
     {
         items.Clear();
         EventPool.Trigger("ItemChanged");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_joker_activation");
     }
 }

@@ -22,14 +22,12 @@ public class BuffManager
         if (!buffs.ContainsKey(type))
         {
              buffs[type] = value;
-            FMODUnity.RuntimeManager.PlayOneShot("sfx_boost");
         }
         else
         {
             buffs[type] += value;
-            FMODUnity.RuntimeManager.PlayOneShot("sfx_boost");
         }
-        
+
         //EventPool.Trigger(EventPoolNames.UpdateBuff);
     }
     public void ClearBuff()
