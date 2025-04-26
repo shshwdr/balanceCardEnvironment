@@ -229,16 +229,31 @@ public class HandManager : Singleton<HandManager>
         EventPool.Trigger("DrawHand");
     }
 
+    void TriggerDiscardEffect()
+    {
+        
+        if (ItemManager.Instance.buffManager.hasBuff("addEnergyWhenDiscard"))
+        {
+            EventPool.Trigger<string>("ItemTrigger","addEnergyWhenDiscard");
+
+            GameManager.Instance.Energy += 1;
+        }
+        
+        
+        if (ItemManager.Instance.buffManager.hasBuff("discardAndDraw"))
+        {
+            EventPool.Trigger<string>("ItemTrigger","discardAndDraw");
+
+            DrawCard(1);
+        }
+        
+    }
     public void DiscardCards(int count)
     {
+        TriggerDiscardEffect();
         for (int i = 0; i < count; i++)
         {
-            if (ItemManager.Instance.buffManager.hasBuff("addEnergyWhenDiscard"))
-            {
-                EventPool.Trigger<string>("ItemTrigger","addEnergyWhenDiscard");
-
-                GameManager.Instance.Energy += 1;
-            }
+            
             if (handInBattle.Count == 0)
             {
                 break;
@@ -260,6 +275,8 @@ public class HandManager : Singleton<HandManager>
 
     public void DiscardHand()
     {
+        
+        TriggerDiscardEffect();
         discardedInBattle.AddRange(handInBattle);
         handInBattle.Clear();
     }

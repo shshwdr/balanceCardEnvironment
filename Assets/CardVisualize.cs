@@ -193,6 +193,25 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        
+        var str = "";
+        if (cardInfo.desc.ToLower().Contains("scientist"))
+        {
+            str +=$"Scientist: +{CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue} <sprite name=\"Industry\"> per scientist when a card adds <sprite name=\"Industry\">\n";
+        }
+        if (cardInfo.desc.ToLower().Contains("activist"))
+        {
+            str += $"Activist: +{CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue} <sprite name=\"Nature\"> per Activist when a card adds <sprite name=\"Nature\">\n";
+        }
+        if (cardInfo.desc.ToLower().Contains("boost"))
+        {
+            str += $"Boost: Multiply the effect of Scientists or Activists\n";
+        }
+
+        if (str != "")
+        {
+            DescView.Instance.Show(str);
+        }
         if (isInShop)
         {
             return;
@@ -209,6 +228,7 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        DescView.Instance.Hide();
         if (!setPosition || !isDraggable)
         {
             return;

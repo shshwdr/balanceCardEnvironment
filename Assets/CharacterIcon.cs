@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Pool;
@@ -7,18 +6,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BoostIcon : MonoBehaviour
+public class CharacterIcon : MonoBehaviour
 {
     public bool isIndustry;
-    // Start is called before the first frame update
     public Button button;
-    public TMP_Text text;
-    public Image image;
-    public string desc;
-
     private void Start()
     {
-        
         EventTrigger eventTrigger = button.gameObject.GetComponent<EventTrigger>();
 
         if (eventTrigger == null)
@@ -40,31 +33,24 @@ public class BoostIcon : MonoBehaviour
         eventTrigger.triggers.Add(entry);
         eventTrigger.triggers.Add(entry2);
         
+        EventPool.OptIn("CharacterChanged",updateCharacter);
         
-        UpdateIcon();
-        EventPool.OptIn("StateChanged", UpdateIcon);
     }
-    
-    public void OnPointerEnter(PointerEventData eventData)
+    public TMP_Text characterCount;
+    public void updateCharacter()
     {
-        DescView.Instance.Show("Boost: Multiply the effect of Scientists or Activists");
+        characterCount.text ="X"+ (isIndustry?GameManager.Instance.industryManCount:GameManager.Instance.natureManCount.ToString());
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {            
+        var str = isIndustry? $"Scientist: +{CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue} <sprite name=\"Industry\"> per scientist when a card adds <sprite name=\"Industry\">\n"
+            :$"Activist: +{CSVLoader.Instance.miscellaneousInfoDict["valueAddPerMan"].intValue} <sprite name=\"Nature\"> per Activist when a card adds <sprite name=\"Nature\">\n";
+
+        DescView.Instance.Show(str);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         DescView.Instance.Hide();
     }
 
-    
-
-    void UpdateIcon()
-    {
-        var value = isIndustry ? HandManager.Instance.effectiveIndustryBoost() : HandManager.Instance.effectiveNatureBoost();
-        text.text = $"x{value }";
-
-        button.gameObject.SetActive(value != 0);
-        if (value == 0)
-        {
-            
-        }
-    }
 }
