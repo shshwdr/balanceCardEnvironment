@@ -17,7 +17,6 @@ public class DisasterManager : Singleton<DisasterManager>
     }
     public void AddDisaster(DisasterInfo info)
     {
-        GameManager.Instance.MusicDisaster();
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster");
 
         disasters.Add(info);
@@ -51,7 +50,5 @@ public class DisasterManager : Singleton<DisasterManager>
         disasters.Clear();
         buffManager.ClearBuff();
         EventPool.Trigger("DisasterChanged");
-
-        GameManager.Instance.MusicDisasterClean();
     }
 }

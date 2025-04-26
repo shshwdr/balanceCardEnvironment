@@ -135,12 +135,14 @@ public class GameManager : Singleton<GameManager>
                     
                     EventPool.Trigger<string>("DisasterTrigger","doubleLose");
                     diff *= 2;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster_loss");
                 }
                 if (ItemManager.Instance.buffManager.GetBuffValue("industryLoseAddIndustryMan") > 0)
                 {
                     EventPool.Trigger<string>("ItemTrigger","industryLoseAddIndustryMan");
 
                     GameManager.Instance.AddCharacter("industryMan",  ItemManager.Instance.buffManager.GetBuffValue("industryLoseAddIndustryMan"));
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster_loss");
                 }
             }else if (diff > 0)
             {
@@ -149,6 +151,7 @@ public class GameManager : Singleton<GameManager>
                     
                     EventPool.Trigger<string>("DisasterTrigger","IndustryLoseNature");
                     Nature -= 20;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster_loss");
                 }
             }
             industry += diff;
@@ -169,12 +172,14 @@ public class GameManager : Singleton<GameManager>
                 {                    EventPool.Trigger<string>("DisasterTrigger","doubleLose");
 
                     diff *= 2;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster_loss");
                 }
                 if (ItemManager.Instance.buffManager.GetBuffValue("natureLoseAddNatureMan") > 0)
                 {
                     EventPool.Trigger<string>("ItemTrigger","natureLoseAddNatureMan");
 
                     GameManager.Instance.AddCharacter("natureMan",  ItemManager.Instance.buffManager.GetBuffValue("natureLoseAddNatureMan"));
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster_loss");
                 }
             }else if (diff > 0)
             {
@@ -183,6 +188,7 @@ public class GameManager : Singleton<GameManager>
                     EventPool.Trigger<string>("DisasterTrigger","natureLoseIndustry");
 
                     Industry -= 20;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_disaster_loss");
                 }
             }
             nature += diff;
@@ -328,6 +334,11 @@ public class GameManager : Singleton<GameManager>
             GameManager.Instance.AddCharacter("industryMan", 2);
             GameManager.Instance.AddCharacter("natureMan", 2);
         }
+        if (day > 2)
+        {
+            MusicDisaster();
+        }
+            
     }
 
     public void RestartGame()
