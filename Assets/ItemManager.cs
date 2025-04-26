@@ -30,6 +30,7 @@ public class ItemManager : Singleton<ItemManager>
                     case "addEnergyWhenDiscard":
                         case "discardAndDraw":
                     buffManager.AddBuff(action,1);
+                    FMODUnity.RuntimeManager.PlayOneShot("sfx_joker_activation");
                     break;
                 case "natureLoseAddNatureMan":
                 case "industryLoseAddIndustryMan":
@@ -37,6 +38,7 @@ public class ItemManager : Singleton<ItemManager>
                     i++;
                     var value = int.Parse(info.actions[i]);
                     buffManager.AddBuff(action,value);
+                    FMODUnity.RuntimeManager.PlayOneShot("sfx_joker_activation");
                     break;
             }
         }
