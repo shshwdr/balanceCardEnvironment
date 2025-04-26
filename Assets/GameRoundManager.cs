@@ -72,8 +72,8 @@ public class GameRoundManager : Singleton<GameRoundManager>
         }
         else
         {
-            FindObjectOfType<PopupMenu>().ShowText($"Day Finished!\nYou get {industryReward} in industry\nYou get {natureReward} disaster in nature");
-            yield return new WaitUntil(() => FindObjectOfType<PopupMenu>().IsActive == false);
+            FindObjectOfType<PopupMenuResult>().ShowText($"Day Finished!\nYou get {industryReward} in industry\nYou get {natureReward} disaster in nature");
+            yield return new WaitUntil(() => FindObjectOfType<PopupMenuResult>().IsActive == false);
             
             var goldCount  = int.Parse(industryReward);
             if (goldCount > 0)
@@ -90,9 +90,10 @@ public class GameRoundManager : Singleton<GameRoundManager>
                 for(int i = 0;i<disasterCount;i++)
                 {
                     var disaster = disasters.PickItem();
-                    FindObjectOfType<PopupMenu>().ShowText($"You Get Disaster {disaster.desc}");
+                    FindObjectOfType<PopupMenuDisaster>().ShowText($"{disaster.desc}");
+                    FindObjectOfType<PopupMenuDisaster>().ShowTitle($"{disaster.title}");
                     DisasterManager.Instance.AddDisaster(disaster);
-                    yield return new WaitUntil(() => FindObjectOfType<PopupMenu>().IsActive == false);
+                    yield return new WaitUntil(() => FindObjectOfType<PopupMenuDisaster>().IsActive == false);
                     
                 }
             }

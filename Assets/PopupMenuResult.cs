@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopupMenu : MenuBase
+public class PopupMenuResult : MenuBase
 {
     public TextPopup textPopup;
     public void ShowText(string text)

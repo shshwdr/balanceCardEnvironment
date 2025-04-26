@@ -1,8 +1,8 @@
-﻿identifier,actions,title,desc,canDraw,unlockAt
-noIndustryMan,disableIndustryMan,noIndustryMan,All Scientists previously spawned are gone for the day,1,
-noNatureMan,disableNatureMan,noNatureMan,All Activists previously spawned are gone for the day,1,
-EndTurnFast,endTurn|6,EndTurnFast,"Today, turns will end after playing 6 cards",1,
-doubleLose,doubleLose,doubleLose,Losses are doubles,1,
-loseMoreNature,IndustryLoseNature,loseMoreNature,-20 Nature when an Industry gain occurs,1,
-loseMoreIndustry,natureLoseIndustry,loseMoreIndustry,-20 Industry when a Nature gain occurs,1,
-disableItem,,disableItem,A random item is disabled today,,
+identifier,actions,title,desc,canDraw,unlockAt
+noNatureMan,disableNatureMan,Activists on leave,All Activists previously spawned are gone for the day,1,
+noIndustryMan,disableIndustryMan,Scientists on strike,All Scientists previously spawned are gone for the day,1,
+loseMoreNature,IndustryLoseNature,Deforestation,-20 <sprite name=Nature> when a <sprite name=Industry> gain occurs,1,
+loseMoreIndustry,natureLoseIndustry,Primitive growth,-20 <sprite name=Industry> when a <sprite name=Nature> gain occurs,1,
+EndTurnFast,endTurn|6,Play carefully,"Today, turns will end after playing 6 cards",1,
+doubleLose,doubleLose,Losing streak,Losses are doubles,1,
+disableItem,,Item malfunction,A random item is disabled today,,
