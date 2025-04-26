@@ -83,6 +83,8 @@ public class MeterView : MonoBehaviour
         {
             value.color = Color.black;
         }
+
+        int index = 0;
         bool firstFinished = true;
         for (int i = rewardList.Count-1;i>=0;i--)
         {
@@ -116,6 +118,8 @@ public class MeterView : MonoBehaviour
                         currentResult = rewardList[i].ToString();
                     }
                     firstFinished = false;
+                    //index = i;
+                    EventPool.Trigger("meterUpdate",i,isIndustry);
                 }
                 else
                 {

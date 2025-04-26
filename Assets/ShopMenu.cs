@@ -7,6 +7,7 @@ public class ShopMenu : MenuBase
 {
     public Transform cardsParent;
     public Transform itemsParent;
+    public HashSet<string> purchased;
 
     public void ShowCardSelect()
     {
@@ -15,6 +16,7 @@ public class ShopMenu : MenuBase
 
     public void ShowItemPurchase()
     {
+        purchased = new HashSet<string>();
         Show();
         {
             var allCandidates = CSVLoader.Instance.cardDict.Values.Where(x => x.canDraw).ToList();

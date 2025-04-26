@@ -32,17 +32,36 @@ public class ShopCell : MonoBehaviour
 
     public void UpdateCell()
     {
+        
         if (itemIcon)
         {
-            var interactable = GameManager.Instance.Gold >= ((ItemInfo)(itemIcon.info)).cost;
-            buyButton.interactable = interactable;
-            buyButton.GetComponentInChildren<TMP_Text>().color = interactable?Color.black:Color.red;
+
+            if (FindObjectOfType<ShopMenu>().purchased.Contains(itemIcon.info.identifier))
+            {
+                buyButton.interactable = false;
+                buyButton.GetComponentInChildren<TMP_Text>().text = "Sold Out!";
+            }
+            else
+            {
+                var interactable = GameManager.Instance.Gold >= ((ItemInfo)(itemIcon.info)).cost;
+                buyButton.interactable = interactable;
+                buyButton.GetComponentInChildren<TMP_Text>().color = interactable?Color.black:Color.red;
+            }
         }
         else
         {
-            var interactable = GameManager.Instance.Gold >= cardVisualize.cardInfo.cost;
-            buyButton.interactable = interactable;
-            buyButton.GetComponentInChildren<TMP_Text>().color = interactable?Color.black:Color.red;
+            if (FindObjectOfType<ShopMenu>().purchased.Contains(cardVisualize.cardInfo.identifier))
+            {
+                buyButton.interactable = false;
+                buyButton.GetComponentInChildren<TMP_Text>().text = "Sold Out!";
+            }
+            else
+            {
+                
+                var interactable = GameManager.Instance.Gold >= cardVisualize.cardInfo.cost;
+                buyButton.interactable = interactable;
+                buyButton.GetComponentInChildren<TMP_Text>().color = interactable?Color.black:Color.red;
+            }
         }
     }
     public void InitItem(ItemInfo info)

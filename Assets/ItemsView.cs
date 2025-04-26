@@ -54,5 +54,6 @@ public class ItemsView : MonoBehaviour
                 parent.GetChild(i).transform.DOPunchScale(Vector3.one, 0.5f);
             }
         }
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_joker_activation") ;
     }
 }

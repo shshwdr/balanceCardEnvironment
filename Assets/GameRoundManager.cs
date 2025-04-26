@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Pool;
 using UnityEngine;
 
 public class GameRoundManager : Singleton<GameRoundManager>
@@ -68,8 +69,8 @@ public class GameRoundManager : Singleton<GameRoundManager>
         var natureReward = Hud.Instance.natureMeter.GetComponentInParent<MeterView>().currentResult;
         
         var currentTurnReq = CSVLoader.Instance.turnRequirementDict[GameManager.Instance.Day-1];
-        var industryValue = $"{GameManager.Instance.Industry}/currentTurnReq.industryReq";
-        var natureValue = $"{GameManager.Instance.Nature}/currentTurnReq.natureReq";
+        var industryValue = $"{GameManager.Instance.Industry}/{currentTurnReq.industryReq.LastItem()}";
+        var natureValue = $"{GameManager.Instance.Nature}/{currentTurnReq.natureReq.LastItem()}";
         
 
         if (industryReward == "DIE")
@@ -145,6 +146,10 @@ public class GameRoundManager : Singleton<GameRoundManager>
 
     void startBattle()
     {
+        
+        EventPool.Trigger("meterUpdate",-1,true);
+        
+        EventPool.Trigger("meterUpdate",-1,false);
         GameManager.Instance.StartNewDay();
     }
     
