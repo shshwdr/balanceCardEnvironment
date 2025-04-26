@@ -6,32 +6,27 @@ using UnityEngine.UI;
 
 public class BackgroundUpdateView : MonoBehaviour
 {
-    public Transform industryParent;
-    public Transform natureParent;
-    public Image[] industryImages;
-    public Image[] natureImages;
+    public Image industryImage;
+    public Image natureImage;
+    
     // Start is called before the first frame update
     void Start()
     {
         
         EventPool.OptIn<int, bool>("meterUpdate",MeterUpdate);
-        industryImages = industryParent.GetComponentsInChildren<Image>(true);
-        natureImages = natureParent.GetComponentsInChildren<Image>(true);
     }
 
     void MeterUpdate(int index, bool isIndustry)
     {
-        var images = isIndustry ? industryImages : natureImages;
-        foreach (var image in images)
+        var images = isIndustry ? industryImage : natureImage;
+       
+        if (index>=0)
         {
-            image.gameObject.SetActive(false); 
-        }
-        if (index>=3)
+            images.sprite = Resources.Load<Sprite>("bk/" + (isIndustry ? "industry" : "nature" )+ (index+1));
+            images.gameObject.SetActive(true);
+        }else 
         {
-            images[1].gameObject.SetActive(true);
-        }else if (index >= 1)
-        {
-            images[0].gameObject.SetActive(true);
+            images.gameObject.SetActive(false);
         }
     }
     // Update is called once per frame

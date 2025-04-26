@@ -120,7 +120,7 @@ public class MeterView : MonoBehaviour
             value.color = Color.black;
         }
 
-        int index = 0;
+        int index = -1;
         bool firstFinished = true;
         for (int i = rewardList.Count-1;i>=0;i--)
         {
@@ -154,8 +154,7 @@ public class MeterView : MonoBehaviour
                         currentResult = rewardList[i].ToString();
                     }
                     firstFinished = false;
-                    //index = i;
-                    EventPool.Trigger("meterUpdate",i,isIndustry);
+                    index = i;
                 }
                 else
                 {
@@ -166,6 +165,8 @@ public class MeterView : MonoBehaviour
                 targetImages[i].fillAmount = (currentValue- prevReq)/(float)(reqList[i] - prevReq);
             }
         }
+        
+        EventPool.Trigger("meterUpdate",index,isIndustry);
     }
 
     // Update is called once per frame
