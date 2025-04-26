@@ -27,6 +27,7 @@ public class ItemManager : Singleton<ItemManager>
                 case "shareBoost":
                 case "lastCardTwice":
                 case "drawWhenEmpty":
+                case "addEnergy":
                     case "addEnergyWhenDiscard":
                         case "discardAndDraw":
                     buffManager.AddBuff(action,1);

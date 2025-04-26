@@ -46,6 +46,11 @@ public class GameManager : Singleton<GameManager>
     public void ResetEnergy()
     {
         startEnergy = CSVLoader.Instance.miscellaneousInfoDict["startEnergy"].intValue;
+        if (ItemManager.Instance.buffManager.hasBuff("addEnergy"))
+        {
+            startEnergy += 1;
+
+        }
         Energy = startEnergy;
     }
 
