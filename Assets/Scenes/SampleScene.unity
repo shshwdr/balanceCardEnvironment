@@ -11137,6 +11137,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4884035005637188958, guid: 86f57754b631df64e88f1e69ab6321ef, type: 3}
+      propertyPath: m_text
+      value: Year completed
+      objectReference: {fileID: 0}
     - target: {fileID: 6806143588087642717, guid: 86f57754b631df64e88f1e69ab6321ef, type: 3}
       propertyPath: m_Name
       value: popupresult
