@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Pool;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MeterView : MonoBehaviour
@@ -18,6 +19,19 @@ public class MeterView : MonoBehaviour
     Image[] targetImages;
     TMP_Text[] resultTexts;
     TMP_Text[] targetTexts;
+    
+    public Button button;
+    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        var str = isIndustry?"Reach enough industry point <sprite name=\"Industry\"> before end of year to earn money<sprite name=\"Money\">":
+                 "Reach enough nature point <sprite name=\"Nature\"> before end of year to avoid disasters<sprite name=\"Disaster\">";
+        DescView.Instance.Show(str);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        DescView.Instance.Hide();
+    }
 
     public bool isIndustry;
     // Start is called before the first frame update
@@ -31,6 +45,26 @@ public class MeterView : MonoBehaviour
         EventPool.OptIn("IndustryChanged", UpdateView);
         EventPool.OptIn("NatureChanged", UpdateView);
         
+        EventTrigger eventTrigger = button.gameObject.GetComponent<EventTrigger>();
+
+        if (eventTrigger == null)
+        {
+            eventTrigger = button.gameObject.AddComponent<EventTrigger>();
+        }
+
+        // 创建一个 PointerEnter 事件
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerEnter;
+        entry.callback.AddListener((data) => { OnPointerEnter((PointerEventData)data); });
+        
+        
+        EventTrigger.Entry entry2 = new EventTrigger.Entry();
+        entry2.eventID = EventTriggerType.PointerExit;
+        entry2.callback.AddListener((data) => { OnPointerExit((PointerEventData)data); });
+
+        // 将 PointerEnter 事件添加到 EventTrigger 中
+        eventTrigger.triggers.Add(entry);
+        eventTrigger.triggers.Add(entry2);
     }
 
     public void UpdateViewForStartOfTurn()

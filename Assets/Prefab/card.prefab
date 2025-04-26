@@ -62,6 +62,7 @@ MonoBehaviour:
   cost: {fileID: 8161677270741063866}
   type: {fileID: 688959493535567255}
   hoverTrans: {fileID: 2043558933827330017}
+  hoverTime: 0.15
   setPosition: 0
   disable: {fileID: 2531068776109700917}
 --- !u!222 &6958913004139308067
@@ -956,8 +957,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6621054871455225346, guid: 806720c2f6370a5438ea36694daf4b7b, type: 3}
       propertyPath: m_fontSize
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 6621054871455225346, guid: 806720c2f6370a5438ea36694daf4b7b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f3a3995a0b374ee40a580b93eb2c8c25, type: 2}
     - target: {fileID: 6621054871455225346, guid: 806720c2f6370a5438ea36694daf4b7b, type: 3}
       propertyPath: m_fontColor.b
       value: 0
@@ -972,15 +977,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6621054871455225346, guid: 806720c2f6370a5438ea36694daf4b7b, type: 3}
       propertyPath: m_fontSizeBase
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6621054871455225346, guid: 806720c2f6370a5438ea36694daf4b7b, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 4394756bcfb72554b84ef297c23d548c, type: 2}
+      objectReference: {fileID: 2100000, guid: 749cb274842413a47afa54467289c48c, type: 2}
     - target: {fileID: 6621054871455225346, guid: 806720c2f6370a5438ea36694daf4b7b, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621054871455225346, guid: 806720c2f6370a5438ea36694daf4b7b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9049195848860026113, guid: 806720c2f6370a5438ea36694daf4b7b, type: 3}
       propertyPath: m_Name

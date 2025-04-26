@@ -47,11 +47,11 @@ public class BoostIcon : MonoBehaviour
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //DescView.Instance.Show("Boost");
+        DescView.Instance.Show("Boost: Double the effect of Scientists or Activists");
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        //DescView.Instance.Hide();
+        DescView.Instance.Hide();
     }
 
     
