@@ -38,7 +38,8 @@ public class RandomSpawner : MonoBehaviour
 
         // 实例化 Prefab
         var prefab = Resources.Load<GameObject>("characters/"+name);
-        Instantiate(prefab, spawnPosition, Quaternion.identity, transform);
+        var go =Instantiate(prefab, spawnPosition, Quaternion.identity, transform);
+        go.transform.parent = pa.transform;
     }
 
     Vector2 FindFarAwayPosition(List<Vector2> occupiedPositions ,BoxCollider2D pa)

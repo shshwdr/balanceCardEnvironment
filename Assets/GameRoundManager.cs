@@ -151,6 +151,7 @@ public class GameRoundManager : Singleton<GameRoundManager>
         
         EventPool.Trigger("meterUpdate",-1,false);
         GameManager.Instance.StartNewDay();
+        
     }
     
     public void GameWin()
