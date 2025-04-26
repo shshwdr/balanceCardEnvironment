@@ -5,7 +5,6 @@ using System.Linq;
 using Pool;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Profiling.RawFrameDataView;
 
 public class GameManager : Singleton<GameManager>
 {

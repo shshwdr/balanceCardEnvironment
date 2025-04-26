@@ -24,8 +24,8 @@ public class MeterView : MonoBehaviour
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        var str = isIndustry?"Reach enough industry point <sprite name=\"Industry\"> before end of year to earn money<sprite name=\"Money\">":
-                 "Reach enough nature point <sprite name=\"Nature\"> before end of year to avoid disasters<sprite name=\"Disaster\">";
+        var str = isIndustry?"Reach enough industry point <sprite name=\"Industry\"> before end of year to earn money<sprite name=\"Money\">. If you failed reaching any target, you lose.":
+                 "Reach enough nature point <sprite name=\"Nature\"> before end of year to avoid disasters<sprite name=\"Disaster\">. If you failed reaching any target, you lose.";
         DescView.Instance.Show(str);
     }
     public void OnPointerExit(PointerEventData eventData)
