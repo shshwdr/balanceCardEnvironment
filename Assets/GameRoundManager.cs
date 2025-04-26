@@ -39,7 +39,11 @@ public class GameRoundManager : Singleton<GameRoundManager>
             case StateType.battle:
                 currentState = StateType.reward;
 
-                StartCoroutine(showReward());
+                //if (CSVLoader.Instance.turnRequirementDict.ContainsKey(GameManager.Instance.Day))
+                {
+                    
+                    StartCoroutine(showReward());
+                }
                 break;
             case StateType.reward:
                 currentState = StateType.buyItem;
@@ -62,6 +66,11 @@ public class GameRoundManager : Singleton<GameRoundManager>
     {
         var industryReward = Hud.Instance.industryMeter.GetComponentInParent<MeterView>().currentResult;
         var natureReward = Hud.Instance.natureMeter.GetComponentInParent<MeterView>().currentResult;
+        
+        var currentTurnReq = CSVLoader.Instance.turnRequirementDict[GameManager.Instance.Day-1];
+        var industryValue = $"{GameManager.Instance.Industry}/currentTurnReq.industryReq";
+        var natureValue = $"{GameManager.Instance.Nature}/currentTurnReq.natureReq";
+        
 
         if (industryReward == "DIE")
         {
@@ -72,7 +81,13 @@ public class GameRoundManager : Singleton<GameRoundManager>
         }
         else
         {
-            FindObjectOfType<PopupMenuResult>().ShowText($"Day Finished!\nYou get {industryReward} in industry\nYou get {natureReward} disaster in nature");
+            
+            if(!CSVLoader.Instance.turnRequirementDict.ContainsKey(GameManager.Instance.Day))
+            {
+                GameWin();
+                yield break;
+            }
+            FindObjectOfType<PopupMenuResult>().ShowText($"{industryValue}",$"{natureValue}",$"Earned: {industryReward}",$"Next Disaster:{natureReward}");
             yield return new WaitUntil(() => FindObjectOfType<PopupMenuResult>().IsActive == false);
             
             var goldCount  = int.Parse(industryReward);
@@ -124,7 +139,7 @@ public class GameRoundManager : Singleton<GameRoundManager>
     void GameOver(string t)
     {
         
-        FindObjectOfType<GameOver>().ShowText(t);
+        FindObjectOfType<GameOver>().ShowText(t,false);
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_game_over");
     }
 
@@ -135,6 +150,7 @@ public class GameRoundManager : Singleton<GameRoundManager>
     
     public void GameWin()
     {
+        FindObjectOfType<GameOver>().ShowText("You saved the world!",true);
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/sfx_level_win");
     }
 }

@@ -21,13 +21,13 @@ public class ShopMenu : MenuBase
             foreach (var cell in cardsParent.GetComponentsInChildren<ShopCell>(true))
             {
                 cell.Init(allCandidates.PickItem());
-                cell.cardVisualize.isInShop = true;
+                cell.cardVisualize.SetInShop();
             }
         }
 
 
         {
-            var allCandidates = CSVLoader.Instance.itemDict.Values.Where(x => x.canDraw).ToList();
+            var allCandidates = CSVLoader.Instance.itemDict.Values.Where(x => x.canDraw && !ItemManager.Instance.items.Contains(x)).ToList();
 
             foreach (var cell in itemsParent.GetComponentsInChildren<ShopCell>(true))
             {

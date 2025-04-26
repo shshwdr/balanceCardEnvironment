@@ -121,6 +121,11 @@ public class CardVisualize : MonoBehaviour, IPointerDownHandler,IPointerEnterHan
         //PlayerControllerManager.Instance.StartDragging(selectionCircle,this);
     }
 
+    public void SetInShop()
+    {
+        isInShop = true;
+        GetComponent<Image>().enabled = false;
+    }
     public void OnPlace()
     {
         if (isInShop)

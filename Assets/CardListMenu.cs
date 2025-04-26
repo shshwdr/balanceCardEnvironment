@@ -46,7 +46,8 @@ public class CardListMenu : MenuBase
         for (int i = 0; i < cards.Count; i++)
         {
             cardVisualizes[i].Init(cards[i]);
-            cardVisualizes[i].isInShop = true;
+            
+            cardVisualizes[i].SetInShop();
             cardVisualizes[i].gameObject.SetActive(true);
         }
         for (int i = cards.Count; i < cardVisualizes.Length; i++)
